@@ -1,0 +1,25 @@
+{
+  "name": "International Financial Regulation MCP",
+  "description": "Basel, FATF, IOSCO, IAIS, FSB, and CPMI-IOSCO regulatory data — 10,508 provisions from 7 authoritative sources",
+  "author": "Ansvar Systems",
+  "author_url": "https://ansvar.eu",
+  "homepage": "https://ansvar.ai/mcp",
+  "repository": "https://github.com/Ansvar-Systems/international-financial-regulation-mcp",
+  "license": "Apache-2.0",
+  "category": "compliance",
+  "tags": [
+    "mcp",
+    "compliance",
+    "financial-regulation",
+    "basel",
+    "fatf",
+    "aml",
+    "iosco",
+    "iais",
+    "fsb",
+    "cybersecurity"
+  ],
+  "tools": 11,
+  "transport": ["stdio", "streamable-http"],
+  "database_size_mb": 15
+}
