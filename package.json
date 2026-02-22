@@ -1,0 +1,77 @@
+{
+  "name": "@ansvar/international-financial-regulation-mcp",
+  "version": "0.1.0",
+  "description": "International Financial Regulation MCP — Basel, FATF, IOSCO, IAIS, FSB, and CPMI-IOSCO regulatory data. Part of the Ansvar MCP Network (ansvar.ai/mcp)",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "international-financial-regulation-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "data/database.db"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:db": "tsx scripts/build-db.ts",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "ingest": "tsx scripts/ingest.ts",
+    "check-updates": "tsx scripts/check-updates.ts",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "postinstall": "test -d dist || npm run build || true",
+    "validate": "npm run lint && npm test",
+    "ingest:fetch": "tsx scripts/ingest-fetch.ts",
+    "ingest:diff": "tsx scripts/ingest-diff.ts",
+    "coverage:update": "tsx scripts/update-coverage.ts",
+    "freshness:check": "tsx scripts/check-freshness.ts",
+    "coverage:verify": "tsx scripts/verify-coverage.ts",
+    "ingest:full": "npm run ingest:fetch && npm run build:db && npm run coverage:update",
+    "test:contract": "vitest run tests/contract/"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.3",
+    "better-sqlite3": "^12.6.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.15.29",
+    "jsdom": "^27.4.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ansvar-Systems/international-financial-regulation-mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/Ansvar-Systems/international-financial-regulation-mcp/issues"
+  },
+  "homepage": "https://ansvar.ai/mcp",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "claude",
+    "compliance",
+    "legal",
+    "ansvar",
+    "international-law",
+    "financial-regulation",
+    "basel",
+    "fatf",
+    "aml",
+    "banking"
+  ],
+  "author": "Ansvar Systems AB <hello@ansvar.ai>",
+  "license": "Apache-2.0"
+}
