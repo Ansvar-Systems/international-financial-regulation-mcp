@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0",
+  "mcp_name": "International Financial Regulation MCP",
+  "mcp_type": "domain_intelligence",
+  "coverage_date": "2026-02-22",
+  "database_version": "0.1.0",
+  "sources": [
+    {
+      "id": "BASEL",
+      "name": "Basel Committee standards and guidance",
+      "authority": "Bank for International Settlements",
+      "url": "https://www.bis.org/bcbs/publ/index.htm",
+      "version": "2026-02-20",
+      "item_count": 1116,
+      "item_type": "provision",
+      "last_refresh": "2026-02-20",
+      "refresh_frequency": "monthly",
+      "completeness": "partial",
+      "completeness_note": "Ingested from BIS APIs — covers published standards and guidance documents. Individual paragraph-level granularity varies by document."
+    },
+    {
+      "id": "FATF_REC",
+      "name": "FATF Recommendations and Methodology",
+      "authority": "Financial Action Task Force",
+      "url": "https://www.fatf-gafi.org",
+      "version": "2026-02-19",
+      "item_count": 1336,
+      "item_type": "provision",
+      "last_refresh": "2026-02-19",
+      "refresh_frequency": "monthly",
+      "completeness": "full",
+      "completeness_note": "Full FATF publications corpus ingested from faceted export dump."
+    },
+    {
+      "id": "FATF_LIST",
+      "name": "FATF high-risk and monitored jurisdictions",
+      "authority": "Financial Action Task Force",
+      "url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "version": "2026-02-19",
+      "item_count": 125,
+      "item_type": "provision",
+      "last_refresh": "2026-02-19",
+      "refresh_frequency": "monthly",
+      "completeness": "snapshot",
+      "completeness_note": "Point-in-time snapshot of grey/black list status. Updated when FATF publishes new list."
+    },
+    {
+      "id": "IOSCO",
+      "name": "IOSCO principles and publications",
+      "authority": "International Organization of Securities Commissions",
+      "url": "https://www.iosco.org",
+      "version": "2023-05-24",
+      "item_count": 1029,
+      "item_type": "provision",
+      "last_refresh": "2023-05-24",
+      "refresh_frequency": "monthly",
+      "completeness": "partial",
+      "completeness_note": "Ingested from v2 crawl dump with direct crawl and RSS fallback. Data is stale — last refresh May 2023."
+    },
+    {
+      "id": "IAIS",
+      "name": "IAIS insurance core principles and publications",
+      "authority": "International Association of Insurance Supervisors",
+      "url": "https://www.iaisweb.org",
+      "version": "2026-02-20",
+      "item_count": 1077,
+      "item_type": "provision",
+      "last_refresh": "2026-02-20",
+      "refresh_frequency": "monthly",
+      "completeness": "partial",
+      "completeness_note": "Ingested from IAIS sitemap. Covers published standards and guidance."
+    },
+    {
+      "id": "FSB",
+      "name": "FSB policy and publications",
+      "authority": "Financial Stability Board",
+      "url": "https://www.fsb.org",
+      "version": "2026-02-21",
+      "item_count": 1130,
+      "item_type": "provision",
+      "last_refresh": "2026-02-21",
+      "refresh_frequency": "monthly",
+      "completeness": "partial",
+      "completeness_note": "Ingested from FSB sitemap and RSS feeds. Covers key attributes and peer reviews."
+    },
+    {
+      "id": "CPMI_IOSCO",
+      "name": "CPMI-IOSCO standards and PFMI implementation",
+      "authority": "BIS and IOSCO",
+      "url": "https://www.bis.org/cpmi/publ/index.htm",
+      "version": "2025-12-18",
+      "item_count": 4695,
+      "item_type": "provision",
+      "last_refresh": "2025-12-18",
+      "refresh_frequency": "monthly",
+      "completeness": "partial",
+      "completeness_note": "Ingested from BIS APIs. Includes PFMI principles and implementation monitoring records."
+    }
+  ],
+  "gaps": [
+    {
+      "id": "iosco-stale-data",
+      "description": "IOSCO data is stale (last refresh May 2023)",
+      "reason": "IOSCO website structure changed; v2 crawl dump has not been refreshed",
+      "impact": "medium",
+      "planned": true,
+      "target_version": "0.2"
+    },
+    {
+      "id": "limited-national-mappings",
+      "description": "National mappings are seed data only (5 sample records)",
+      "reason": "Comprehensive country-level mapping requires manual legal research",
+      "impact": "high",
+      "planned": true,
+      "target_version": "0.3"
+    },
+    {
+      "id": "limited-mutual-evaluations",
+      "description": "Mutual evaluations are seed data only (3 sample records)",
+      "reason": "Full FATF mutual evaluation corpus requires structured extraction from PDF reports",
+      "impact": "medium",
+      "planned": true,
+      "target_version": "0.3"
+    },
+    {
+      "id": "no-pfmi-assessments",
+      "description": "CPMI-IOSCO PFMI individual jurisdiction assessment results not included",
+      "reason": "Assessment data available in PDFs only, not machine-readable",
+      "impact": "low",
+      "planned": false,
+      "target_version": null
+    },
+    {
+      "id": "fatf-lists-snapshot",
+      "description": "FATF grey/black lists are point-in-time snapshots, not real-time",
+      "reason": "No FATF API for real-time list status; updated manually from FATF publications",
+      "impact": "medium",
+      "planned": false,
+      "target_version": null
+    },
+    {
+      "id": "limited-definitions",
+      "description": "Only 4 term definitions ingested",
+      "reason": "Definition extraction from regulatory text is partial",
+      "impact": "low",
+      "planned": true,
+      "target_version": "0.2"
+    }
+  ],
+  "tools": [
+    { "name": "search_financial_regulation", "category": "search", "description": "FTS5 search across all regulatory provisions", "data_sources": ["BASEL", "FATF_REC", "FATF_LIST", "IOSCO", "IAIS", "FSB", "CPMI_IOSCO"], "verified": true },
+    { "name": "get_provision", "category": "lookup", "description": "Retrieve a single provision by source and item ID", "data_sources": ["BASEL", "FATF_REC", "FATF_LIST", "IOSCO", "IAIS", "FSB", "CPMI_IOSCO"], "verified": true },
+    { "name": "get_basel_standard", "category": "lookup", "description": "List Basel standards or retrieve provisions by standard ID", "data_sources": ["BASEL"], "verified": true },
+    { "name": "get_fatf_recommendation", "category": "lookup", "description": "Retrieve a FATF recommendation by code or number", "data_sources": ["FATF_REC"], "verified": true },
+    { "name": "check_fatf_status", "category": "lookup", "description": "Check FATF high-risk/monitoring list status for a country", "data_sources": ["FATF_LIST"], "verified": true },
+    { "name": "get_mutual_evaluation_summary", "category": "lookup", "description": "Get mutual evaluation summaries by jurisdiction", "data_sources": ["FATF_REC"], "verified": true },
+    { "name": "map_to_national_requirements", "category": "analysis", "description": "Map international provisions to country-level requirements", "data_sources": ["BASEL", "FATF_REC", "IOSCO", "IAIS", "FSB", "CPMI_IOSCO"], "verified": true },
+    { "name": "compare_requirements", "category": "analysis", "description": "Compare requirements on a topic across regulatory sources", "data_sources": ["BASEL", "FATF_REC", "FATF_LIST", "IOSCO", "IAIS", "FSB", "CPMI_IOSCO"], "verified": true },
+    { "name": "list_sources", "category": "meta", "description": "List all sources with coverage and freshness metadata", "data_sources": ["BASEL", "FATF_REC", "FATF_LIST", "IOSCO", "IAIS", "FSB", "CPMI_IOSCO"], "verified": true },
+    { "name": "about", "category": "meta", "description": "Return server identity, scope, and capability summary", "data_sources": [], "verified": true },
+    { "name": "check_data_freshness", "category": "meta", "description": "Evaluate source freshness based on timestamps and windows", "data_sources": ["BASEL", "FATF_REC", "FATF_LIST", "IOSCO", "IAIS", "FSB", "CPMI_IOSCO"], "verified": true }
+  ],
+  "summary": {
+    "total_tools": 11,
+    "total_sources": 7,
+    "total_items": 10508,
+    "db_size_mb": 15,
+    "known_gaps": 6,
+    "gaps_planned": 4
+  }
+}
