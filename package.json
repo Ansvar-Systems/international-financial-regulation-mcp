@@ -34,6 +34,7 @@
     "test:contract": "vitest run tests/contract/"
   },
   "dependencies": {
+    "@ansvar/mcp-sqlite": "^1.0.3",
     "@modelcontextprotocol/sdk": "^1.25.3",
     "better-sqlite3": "^12.6.2"
   },

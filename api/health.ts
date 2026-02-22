@@ -1,6 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-// TODO: Replace better-sqlite3 with @ansvar/mcp-sqlite for Vercel production
-import Database from 'better-sqlite3';
+import Database from '@ansvar/mcp-sqlite';
 import { join } from 'path';
 import { existsSync, copyFileSync, statSync } from 'fs';
 
