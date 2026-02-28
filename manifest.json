@@ -1,0 +1,95 @@
+{
+  "manifest_version": "0.3",
+  "name": "international-financial-regulation-mcp",
+  "display_name": "International Financial Regulation MCP",
+  "version": "0.1.0",
+  "description": "MCP server for international financial regulation across Basel, FATF, IOSCO, IAIS, FSB, and related global standards.",
+  "author": {
+    "name": "Ansvar Systems",
+    "email": "hello@ansvar.eu",
+    "url": "https://ansvar.eu"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ansvar-Systems/international-financial-regulation-mcp"
+  },
+  "homepage": "https://github.com/Ansvar-Systems/international-financial-regulation-mcp#readme",
+  "keywords": [
+    "international-law",
+    "financial-regulation",
+    "basel",
+    "fatf",
+    "aml",
+    "banking"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/index.js"
+      ],
+      "env": {
+        "INTERNATIONAL_FINANCIAL_REGULATION_DB_PATH": "${workspaceFolder}/data/database.db"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "search_financial_regulation",
+      "status": "implemented"
+    },
+    {
+      "name": "get_provision",
+      "status": "implemented"
+    },
+    {
+      "name": "get_basel_standard",
+      "status": "implemented"
+    },
+    {
+      "name": "get_fatf_recommendation",
+      "status": "implemented"
+    },
+    {
+      "name": "check_fatf_status",
+      "status": "implemented"
+    },
+    {
+      "name": "get_mutual_evaluation_summary",
+      "status": "implemented"
+    },
+    {
+      "name": "map_to_national_requirements",
+      "status": "implemented"
+    },
+    {
+      "name": "compare_requirements",
+      "status": "implemented"
+    },
+    {
+      "name": "list_sources",
+      "status": "implemented"
+    },
+    {
+      "name": "about",
+      "status": "implemented"
+    },
+    {
+      "name": "check_data_freshness",
+      "status": "implemented"
+    }
+  ],
+  "compatibility": {
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}

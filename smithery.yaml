@@ -1,0 +1,120 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# SMITHERY CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Configuration for the Smithery MCP registry.
+# https://smithery.ai
+#
+# Smithery is a registry for discovering and sharing MCP servers.
+# Submitting your server here helps users find it.
+#
+# To submit:
+#   1. Push this file to your repository
+#   2. Go to https://smithery.ai/submit
+#   3. Enter your GitHub repository URL
+#
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ───────────────────────────────────────────────────────────────────────────
+# BASIC INFO
+# ───────────────────────────────────────────────────────────────────────────
+
+# Package name (should match package.json)
+name: international-financial-regulation-mcp
+
+# Human-readable description
+description: MCP server providing access to international financial regulation and supervisory standards (Basel, FATF, IOSCO, IAIS, FSB, CPMI-IOSCO, and related frameworks)
+
+# Version (should match package.json)
+version: "0.1.0"
+
+# ───────────────────────────────────────────────────────────────────────────
+# RUNTIME
+# ───────────────────────────────────────────────────────────────────────────
+
+# Runtime environment
+runtime: node
+
+# Entry point (relative to package root)
+entrypoint: dist/index.js
+
+# ───────────────────────────────────────────────────────────────────────────
+# TRANSPORT
+# ───────────────────────────────────────────────────────────────────────────
+
+# Transport type (stdio for local execution)
+transport:
+  type: stdio
+
+# ───────────────────────────────────────────────────────────────────────────
+# METADATA
+# ───────────────────────────────────────────────────────────────────────────
+
+metadata:
+  # Author information
+  author: Ansvar Systems AB
+
+  # License (should match package.json)
+  license: Apache-2.0
+
+  # Homepage URL
+  homepage: https://github.com/Ansvar-Systems/international-financial-regulation-mcp
+
+  # Documentation URL (if different from homepage)
+  documentation: https://github.com/Ansvar-Systems/international-financial-regulation-mcp#readme
+
+  # Tags for discovery
+  tags:
+    - compliance
+    - legal
+    - regulations
+    - ansvar
+
+  # Category
+  category: legal
+
+  # Supported languages/regions
+  languages:
+    - en
+
+  # Minimum Node.js version
+  node_version: ">=18"
+
+# ───────────────────────────────────────────────────────────────────────────
+# TOOLS
+# ───────────────────────────────────────────────────────────────────────────
+# List the tools provided by this server
+
+tools:
+  - name: search_financial_regulation
+    description: Full-text search across Basel, FATF, IOSCO, IAIS, FSB, and CPMI-IOSCO provisions
+
+  - name: get_provision
+    description: Retrieve a specific provision by source and item identifier
+
+  - name: get_basel_standard
+    description: List Basel standards or retrieve Basel provisions by standard ID
+
+  - name: get_fatf_recommendation
+    description: Retrieve FATF recommendation details by code or number
+
+  - name: check_fatf_status
+    description: Return FATF high-risk or increased-monitoring status for a jurisdiction
+
+  - name: get_mutual_evaluation_summary
+    description: Return mutual evaluation summaries for a jurisdiction
+
+  - name: map_to_national_requirements
+    description: Map international requirements to national legal references
+
+  - name: compare_requirements
+    description: Compare requirements across international standards for a topic
+
+  - name: list_sources
+    description: List source coverage metadata and source-specific provision indexes
+
+  - name: about
+    description: Return server capability and scope metadata
+
+  - name: check_data_freshness
+    description: Evaluate local source freshness windows using snapshot metadata

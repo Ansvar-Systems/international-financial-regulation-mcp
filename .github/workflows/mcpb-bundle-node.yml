@@ -1,0 +1,224 @@
+# ===========================================================================
+# REUSABLE MCPB BUNDLE WORKFLOW (Node.js)
+# ===========================================================================
+#
+# Builds a .mcpb bundle for Node.js MCP servers and optionally uploads it
+# to a GitHub Release when triggered by a tag push.
+#
+# Since the Ansvar MCP suite uses @ansvar/mcp-sqlite (WASM-based, pure JS),
+# there are NO native dependencies — a single ubuntu-latest build suffices.
+#
+# Usage (in the calling repo's .github/workflows/mcpb-bundle.yml):
+#
+#   name: Build MCPB Bundle
+#   on:
+#     push:
+#       tags: ['v*']
+#     workflow_dispatch:
+#   permissions:
+#     contents: write
+#   jobs:
+#     mcpb:
+#       uses: Ansvar-Systems/mcp-server-template/.github/workflows/mcpb-bundle-node.yml@main
+#       with:
+#         server-name: eu-regulations-mcp
+#
+# ===========================================================================
+
+name: Build MCPB Bundle (Node.js)
+
+on:
+  workflow_call:
+    inputs:
+      server-name:
+        description: 'Name for the .mcpb file (e.g. eu-regulations-mcp)'
+        required: true
+        type: string
+      node-version:
+        description: 'Node.js version to use'
+        required: false
+        type: string
+        default: '20'
+      data-dir:
+        description: 'Data directory to include in the bundle (relative to repo root)'
+        required: false
+        type: string
+        default: 'data'
+
+jobs:
+  # -------------------------------------------------------------------------
+  # BUILD MCPB
+  # -------------------------------------------------------------------------
+  # Builds the project, creates a staging directory with only production
+  # artifacts, packs the .mcpb bundle, and uploads it as a workflow artifact.
+  # -------------------------------------------------------------------------
+
+  build-mcpb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: 'npm'
+
+      # -------------------------------------------------------------------
+      # VERSION
+      # -------------------------------------------------------------------
+      # On tag push: extract version from the tag (v1.2.3 -> 1.2.3)
+      # On workflow_dispatch: read version from package.json
+      # -------------------------------------------------------------------
+
+      - name: Get version
+        id: version
+        run: |
+          if [ "$REF_TYPE" = "tag" ]; then
+            VERSION="${GITHUB_REF#refs/tags/v}"
+          else
+            VERSION=$(node -p "require('./package.json').version")
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "::notice::Version: $VERSION"
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+
+      - name: Install mcpb CLI
+        run: npm install -g @anthropic-ai/mcpb
+
+      # -------------------------------------------------------------------
+      # BUILD
+      # -------------------------------------------------------------------
+
+      - name: Build project
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+
+      # -------------------------------------------------------------------
+      # STAGING
+      # -------------------------------------------------------------------
+      # Create a clean staging directory containing only what the bundle
+      # needs: compiled JS, data files, manifest, and prod dependencies.
+      # -------------------------------------------------------------------
+
+      - name: Create staging directory
+        env:
+          PKG_VERSION: ${{ steps.version.outputs.VERSION }}
+          DATA_DIR: ${{ inputs.data-dir }}
+        run: |
+          mkdir -p staging/dist
+
+          # Copy compiled output
+          cp -r dist/* staging/dist/
+
+          # Copy data directory if it exists
+          if [ -d "$DATA_DIR" ]; then
+            cp -r "$DATA_DIR" staging/
+            echo "::notice::Included data directory: $DATA_DIR"
+          else
+            echo "::notice::No data directory found at '$DATA_DIR' — skipping"
+          fi
+
+          # Copy manifest
+          cp manifest.json staging/
+
+          # Generate minimal package.json with only production dependencies
+          node -e "
+            const pkg = require('./package.json');
+            const minimal = {
+              name: pkg.name,
+              version: process.env.PKG_VERSION,
+              description: pkg.description,
+              main: pkg.main || 'dist/index.js',
+              type: pkg.type || 'module',
+              dependencies: pkg.dependencies || {}
+            };
+            require('fs').writeFileSync(
+              'staging/package.json',
+              JSON.stringify(minimal, null, 2)
+            );
+          "
+
+      - name: Install production dependencies in staging
+        working-directory: staging
+        run: npm install --omit=dev
+
+      # -------------------------------------------------------------------
+      # MANIFEST & PACK
+      # -------------------------------------------------------------------
+
+      - name: Update manifest version
+        env:
+          PKG_VERSION: ${{ steps.version.outputs.VERSION }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const m = JSON.parse(fs.readFileSync('staging/manifest.json', 'utf8'));
+            m.version = process.env.PKG_VERSION;
+            fs.writeFileSync('staging/manifest.json', JSON.stringify(m, null, 2));
+          "
+
+      - name: Validate manifest
+        run: mcpb validate staging/manifest.json
+
+      - name: Pack MCPB bundle
+        env:
+          SERVER_NAME: ${{ inputs.server-name }}
+        run: mcpb pack staging "${SERVER_NAME}.mcpb"
+
+      - name: Show bundle info
+        env:
+          SERVER_NAME: ${{ inputs.server-name }}
+        run: mcpb info "${SERVER_NAME}.mcpb"
+
+      - name: Upload bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcpb-bundle
+          path: ${{ inputs.server-name }}.mcpb
+
+  # -------------------------------------------------------------------------
+  # RELEASE
+  # -------------------------------------------------------------------------
+  # Attaches the .mcpb bundle to the GitHub Release created by the tag push.
+  # Only runs when the trigger is a tag (not workflow_dispatch).
+  # -------------------------------------------------------------------------
+
+  release:
+    needs: build-mcpb
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download bundle artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mcpb-bundle
+
+      - name: Upload bundle to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ inputs.server-name }}.mcpb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        env:
+          SERVER_NAME: ${{ inputs.server-name }}
+          VERSION: ${{ github.ref_name }}
+        run: |
+          echo "## MCPB Bundle Uploaded" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Field | Value |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|-------|-------|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Server | $SERVER_NAME |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Version | $VERSION |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Bundle | \`${SERVER_NAME}.mcpb\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Platform | Universal (pure JS, no native deps) |" >> "$GITHUB_STEP_SUMMARY"

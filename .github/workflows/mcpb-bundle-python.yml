@@ -1,0 +1,235 @@
+# ===========================================================================
+# REUSABLE MCPB BUNDLE WORKFLOW (Python)
+# ===========================================================================
+#
+# Builds a .mcpb bundle for Python MCP servers and optionally uploads it
+# to a GitHub Release when triggered by a tag push.
+#
+# Python dependencies are vendored into the bundle (pip install -t) so that
+# the bundle is self-contained — no pip install needed at runtime.
+#
+# Usage (in the calling repo's .github/workflows/mcpb-bundle.yml):
+#
+#   name: Build MCPB Bundle
+#   on:
+#     push:
+#       tags: ['v*']
+#     workflow_dispatch:
+#   permissions:
+#     contents: write
+#   jobs:
+#     mcpb:
+#       uses: Ansvar-Systems/mcp-server-template/.github/workflows/mcpb-bundle-python.yml@main
+#       with:
+#         server-name: my-python-mcp
+#
+# ===========================================================================
+
+name: Build MCPB Bundle (Python)
+
+on:
+  workflow_call:
+    inputs:
+      server-name:
+        description: 'Name for the .mcpb file (e.g. my-python-mcp)'
+        required: true
+        type: string
+      python-version:
+        description: 'Python version to use'
+        required: false
+        type: string
+        default: '3.11'
+      src-dirs:
+        description: 'Space-separated source files/dirs to include in the bundle'
+        required: false
+        type: string
+        default: 'src run.py'
+
+jobs:
+  # -------------------------------------------------------------------------
+  # BUILD MCPB
+  # -------------------------------------------------------------------------
+  # Copies source files and vendored dependencies into a staging directory,
+  # packs the .mcpb bundle, and uploads it as a workflow artifact.
+  # -------------------------------------------------------------------------
+
+  build-mcpb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # -------------------------------------------------------------------
+      # VERSION
+      # -------------------------------------------------------------------
+      # On tag push: extract version from the tag (v1.2.3 -> 1.2.3)
+      # On workflow_dispatch: read version from pyproject.toml
+      # -------------------------------------------------------------------
+
+      - name: Get version
+        id: version
+        run: |
+          if [ "$REF_TYPE" = "tag" ]; then
+            VERSION="${GITHUB_REF#refs/tags/v}"
+          else
+            VERSION=$(python3 -c "
+          import tomllib, pathlib
+          data = tomllib.loads(pathlib.Path('pyproject.toml').read_text())
+          print(data['project']['version'])
+          ")
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "::notice::Version: $VERSION"
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+
+      - name: Install mcpb CLI
+        run: npm install -g @anthropic-ai/mcpb
+
+      # -------------------------------------------------------------------
+      # STAGING
+      # -------------------------------------------------------------------
+      # Create a clean staging directory containing only what the bundle
+      # needs: source files, data files, manifest, and vendored deps.
+      # -------------------------------------------------------------------
+
+      - name: Create staging directory
+        env:
+          SRC_DIRS: ${{ inputs.src-dirs }}
+        run: |
+          mkdir -p staging
+
+          # Copy source files/dirs specified by src-dirs
+          for item in $SRC_DIRS; do
+            if [ -e "$item" ]; then
+              cp -r "$item" staging/
+              echo "::notice::Included source: $item"
+            else
+              echo "::warning::Source not found: $item — skipping"
+            fi
+          done
+
+          # Copy pyproject.toml
+          if [ -f pyproject.toml ]; then
+            cp pyproject.toml staging/
+          fi
+
+          # Copy manifest
+          cp manifest.json staging/
+
+          # Copy data directory if it exists
+          if [ -d data ]; then
+            cp -r data staging/
+            echo "::notice::Included data directory"
+          else
+            echo "::notice::No data directory found — skipping"
+          fi
+
+      - name: Clean Python cache files
+        run: |
+          find staging -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+          find staging -name "*.pyc" -delete 2>/dev/null || true
+          echo "::notice::Cleaned __pycache__ and .pyc files"
+
+      - name: Install Python dependencies in staging
+        run: |
+          if [ -f requirements.txt ]; then
+            echo "::notice::Installing from requirements.txt"
+            pip install --target staging/lib -r requirements.txt
+          elif [ -f pyproject.toml ]; then
+            echo "::notice::Installing from pyproject.toml"
+            pip install --target staging/lib .
+          else
+            echo "::warning::No requirements.txt or pyproject.toml found — skipping dependency install"
+          fi
+
+          # Clean cache files from vendored deps
+          find staging/lib -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+          find staging/lib -name "*.pyc" -delete 2>/dev/null || true
+
+      # -------------------------------------------------------------------
+      # MANIFEST & PACK
+      # -------------------------------------------------------------------
+
+      - name: Update manifest version
+        env:
+          PKG_VERSION: ${{ steps.version.outputs.VERSION }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const m = JSON.parse(fs.readFileSync('staging/manifest.json', 'utf8'));
+            m.version = process.env.PKG_VERSION;
+            fs.writeFileSync('staging/manifest.json', JSON.stringify(m, null, 2));
+          "
+
+      - name: Validate manifest
+        run: mcpb validate staging/manifest.json
+
+      - name: Pack MCPB bundle
+        env:
+          SERVER_NAME: ${{ inputs.server-name }}
+        run: mcpb pack staging "${SERVER_NAME}.mcpb"
+
+      - name: Show bundle info
+        env:
+          SERVER_NAME: ${{ inputs.server-name }}
+        run: mcpb info "${SERVER_NAME}.mcpb"
+
+      - name: Upload bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcpb-bundle
+          path: ${{ inputs.server-name }}.mcpb
+
+  # -------------------------------------------------------------------------
+  # RELEASE
+  # -------------------------------------------------------------------------
+  # Attaches the .mcpb bundle to the GitHub Release created by the tag push.
+  # Only runs when the trigger is a tag (not workflow_dispatch).
+  # -------------------------------------------------------------------------
+
+  release:
+    needs: build-mcpb
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag'
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download bundle artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mcpb-bundle
+
+      - name: Upload bundle to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ inputs.server-name }}.mcpb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        env:
+          SERVER_NAME: ${{ inputs.server-name }}
+          VERSION: ${{ github.ref_name }}
+        run: |
+          echo "## MCPB Bundle Uploaded" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Field | Value |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|-------|-------|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Server | $SERVER_NAME |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Version | $VERSION |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Bundle | \`${SERVER_NAME}.mcpb\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Platform | Universal (vendored Python deps) |" >> "$GITHUB_STEP_SUMMARY"
