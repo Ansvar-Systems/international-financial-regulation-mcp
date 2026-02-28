@@ -1,0 +1,185 @@
+{
+  "sources": [
+    {
+      "id": "IOSCO",
+      "full_name": "IOSCO Objectives and Principles of Securities Regulation",
+      "authority": "International Organization of Securities Commissions",
+      "identifier": "IOSCO",
+      "category": "standard",
+      "priority": "high",
+      "official_portal": "https://www.iosco.org",
+      "update_frequency": "annually",
+      "last_updated": "2026-02-20",
+      "freshness_days": 180,
+      "coverage_note": "All 38 IOSCO Objectives and Principles of Securities Regulation with assessment methodology guidance."
+    }
+  ],
+  "provisions": [
+    {
+      "provision_uid": "IOSCO-P1", "source_id": "IOSCO", "part": "Principles Relating to the Regulator", "item_id": "P1",
+      "title": "Principle 1 - Clear Responsibilities", "text": "The responsibilities of the regulator should be clear and objectively stated. The legislation should provide the regulator with adequate powers, proper resources, and the capacity to perform its functions and exercise its powers. The regulator should adopt clear and consistent regulatory processes, and its processes should be publicly available.", "topic_tags": ["regulator", "mandate", "powers", "accountability"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 1, "category": "Regulator"}
+    },
+    {
+      "provision_uid": "IOSCO-P2", "source_id": "IOSCO", "part": "Principles Relating to the Regulator", "item_id": "P2",
+      "title": "Principle 2 - Operational Independence", "text": "The regulator should be operationally independent and accountable in the exercise of its functions and powers. Independence can be evidenced by the regulator being free from political interference, having a stable source of funding, and having legal protection for the regulator and its staff acting in good faith in the exercise of their functions.", "topic_tags": ["regulator", "independence", "accountability", "governance"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 2, "category": "Regulator"}
+    },
+    {
+      "provision_uid": "IOSCO-P3", "source_id": "IOSCO", "part": "Principles Relating to the Regulator", "item_id": "P3",
+      "title": "Principle 3 - Adequate Powers and Resources", "text": "The regulator should have adequate powers, proper resources and the capacity to perform its functions and exercise its powers. Resources should include adequate funding, qualified staff, and appropriate technology. The regulator should have the power to: license, register and authorize market participants; require market participants to provide information; conduct inspections and investigations; and take enforcement actions.", "topic_tags": ["regulator", "powers", "resources", "capacity"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 3, "category": "Regulator"}
+    },
+    {
+      "provision_uid": "IOSCO-P4", "source_id": "IOSCO", "part": "Principles Relating to the Regulator", "item_id": "P4",
+      "title": "Principle 4 - Clear and Consistent Processes", "text": "The regulator should adopt clear and consistent regulatory processes. Regulatory processes should be fair and equitable. Decisions should be taken in a transparent manner and subject to review. The regulator should adopt and apply processes that are consistently operated and that protect the rights of those affected by regulatory decisions.", "topic_tags": ["regulator", "process", "transparency", "fairness"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 4, "category": "Regulator"}
+    },
+    {
+      "provision_uid": "IOSCO-P5", "source_id": "IOSCO", "part": "Principles Relating to the Regulator", "item_id": "P5",
+      "title": "Principle 5 - Staff Conduct Standards", "text": "The staff of the regulator should observe the highest professional standards, including appropriate standards of confidentiality. Standards should address conflicts of interest, personal account dealing, and receipt of gifts or benefits from regulated entities.", "topic_tags": ["regulator", "staff-conduct", "confidentiality", "ethics"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 5, "category": "Regulator"}
+    },
+    {
+      "provision_uid": "IOSCO-P6", "source_id": "IOSCO", "part": "Principles Relating to the Regulator", "item_id": "P6",
+      "title": "Principle 6 - Monitoring and Managing Systemic Risk", "text": "The regulator should have or contribute to a process to monitor, mitigate and manage systemic risk, appropriate to its mandate. The regulator should have the authority and capacity to take steps to address systemic risk and should have the ability to obtain relevant data to assess emerging risks. The regulator should have mechanisms for information sharing with other domestic and international authorities.", "topic_tags": ["regulator", "systemic-risk", "macroprudential", "monitoring"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 6, "category": "Regulator"}
+    },
+    {
+      "provision_uid": "IOSCO-P7", "source_id": "IOSCO", "part": "Principles Relating to the Regulator", "item_id": "P7",
+      "title": "Principle 7 - Review of Regulatory Perimeter", "text": "The regulator should have or contribute to a process to review the perimeter of regulation regularly. This review should take into account developments in the financial system, including new products, services, activities and entities that fall within or outside the existing regulatory framework. The regulator should have the ability to adapt the perimeter of regulation as market conditions change.", "topic_tags": ["regulator", "perimeter", "regulatory-scope", "innovation"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 7, "category": "Regulator"}
+    },
+    {
+      "provision_uid": "IOSCO-P8", "source_id": "IOSCO", "part": "Principles Relating to the Regulator", "item_id": "P8",
+      "title": "Principle 8 - Conflicts of Interest in Regulation", "text": "The regulator should seek to ensure that conflicts of interest and misalignment of incentives are avoided, eliminated, disclosed or otherwise managed. This applies both within the regulator's own operations and within the financial markets it oversees.", "topic_tags": ["regulator", "conflicts-of-interest", "governance", "integrity"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 8, "category": "Regulator"}
+    },
+    {
+      "provision_uid": "IOSCO-P9", "source_id": "IOSCO", "part": "Principles for Self-Regulation", "item_id": "P9",
+      "title": "Principle 9 - Self-Regulatory Organisations", "text": "Where the regulatory system makes use of self-regulatory organisations (SROs) that exercise some direct oversight responsibility for their respective areas of competence, such SROs should be subject to the oversight of the regulator and should observe standards of fairness and confidentiality when exercising powers and delegated responsibilities.", "topic_tags": ["self-regulation", "sro", "oversight", "delegation"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 9, "category": "Self-Regulation"}
+    },
+    {
+      "provision_uid": "IOSCO-P10", "source_id": "IOSCO", "part": "Principles for Self-Regulation", "item_id": "P10",
+      "title": "Principle 10 - SRO Governance Standards", "text": "SROs should have governance arrangements that address conflicts of interest. SROs should have clear and objective criteria for the qualification of members. SROs should have and enforce rules governing the conduct of their members. SRO governance arrangements should be subject to oversight by the regulator, who should have the ability to intervene in the event of SRO failure.", "topic_tags": ["self-regulation", "sro", "governance", "conflicts-of-interest"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 10, "category": "Self-Regulation"}
+    },
+    {
+      "provision_uid": "IOSCO-P11", "source_id": "IOSCO", "part": "Principles for the Enforcement of Securities Regulation", "item_id": "P11",
+      "title": "Principle 11 - Enforcement Powers", "text": "The regulator should have comprehensive inspection, investigation and surveillance powers. The regulator should have the ability to require documents, examine witnesses, and access records. Inspection powers should allow both routine and for-cause examinations. Investigation powers should be sufficient to determine whether violations of securities laws have occurred.", "topic_tags": ["enforcement", "investigation", "inspection", "surveillance"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 11, "category": "Enforcement"}
+    },
+    {
+      "provision_uid": "IOSCO-P12", "source_id": "IOSCO", "part": "Principles for the Enforcement of Securities Regulation", "item_id": "P12",
+      "title": "Principle 12 - Comprehensive Enforcement Regime", "text": "The regulator should have comprehensive enforcement powers. The regulator should have the ability to impose administrative sanctions, seek civil penalties, and refer matters for criminal prosecution. Sanctions should be effective, proportionate and dissuasive. The regulator should have the power to freeze assets, suspend trading, bar individuals from the industry, and impose pecuniary penalties.", "topic_tags": ["enforcement", "sanctions", "penalties", "prosecution"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 12, "category": "Enforcement"}
+    },
+    {
+      "provision_uid": "IOSCO-P13", "source_id": "IOSCO", "part": "Principles for the Enforcement of Securities Regulation", "item_id": "P13",
+      "title": "Principle 13 - Using Powers Effectively", "text": "The regulatory system should ensure an effective and credible use of inspection, investigation, surveillance and enforcement powers, and implementation of an effective compliance programme. The regulator should monitor compliance through a risk-based approach, combining on-site inspections with off-site surveillance. Enforcement actions should be pursued in a timely manner and outcomes should be made public.", "topic_tags": ["enforcement", "compliance", "risk-based", "effectiveness"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 13, "category": "Enforcement"}
+    },
+    {
+      "provision_uid": "IOSCO-P14", "source_id": "IOSCO", "part": "Principles for Cooperation in Regulation", "item_id": "P14",
+      "title": "Principle 14 - Domestic Cooperation", "text": "There should be a domestic framework for cooperation and information sharing between regulatory authorities and between regulatory authorities and other domestic authorities. This framework should cover exchange of information, coordinated supervisory actions, and crisis management.", "topic_tags": ["cooperation", "information-sharing", "domestic", "coordination"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 14, "category": "Cooperation"}
+    },
+    {
+      "provision_uid": "IOSCO-P15", "source_id": "IOSCO", "part": "Principles for Cooperation in Regulation", "item_id": "P15",
+      "title": "Principle 15 - Cross-Border Cooperation", "text": "The regulatory system should allow for assistance to be provided to foreign regulators who need to make inquiries in the discharge of their functions and exercise of their powers. The regulator should have the ability to share public and non-public information with foreign regulators, subject to appropriate confidentiality safeguards. The IOSCO Multilateral Memorandum of Understanding (MMoU) provides a framework for cross-border cooperation.", "topic_tags": ["cooperation", "cross-border", "information-sharing", "mmou"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 15, "category": "Cooperation"}
+    },
+    {
+      "provision_uid": "IOSCO-P16", "source_id": "IOSCO", "part": "Principles for Cooperation in Regulation", "item_id": "P16",
+      "title": "Principle 16 - International Information Sharing", "text": "The regulatory system should provide for mechanisms to assist foreign regulators and to share information with foreign regulators. The regulator should be able to provide non-public information to foreign regulators and should be a signatory to the IOSCO MMoU or otherwise be able to demonstrate equivalent information sharing arrangements.", "topic_tags": ["cooperation", "international", "information-sharing", "mmou"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 16, "category": "Cooperation"}
+    },
+    {
+      "provision_uid": "IOSCO-P17", "source_id": "IOSCO", "part": "Principles for Issuers", "item_id": "P17",
+      "title": "Principle 17 - Full, Timely and Accurate Disclosure", "text": "There should be full, accurate and timely disclosure of financial results, risk and other information that is material to investors' decisions. Issuers of securities should be required to make initial and ongoing disclosures of material information. Accounting standards used should be of a high and internationally acceptable quality. The disclosure framework should require that information is presented in a manner that is useful to investors.", "topic_tags": ["issuers", "disclosure", "financial-reporting", "transparency"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 17, "category": "Issuers"}
+    },
+    {
+      "provision_uid": "IOSCO-P18", "source_id": "IOSCO", "part": "Principles for Issuers", "item_id": "P18",
+      "title": "Principle 18 - Accounting Standards", "text": "Accounting standards used by issuers to prepare financial statements should be of a high and internationally acceptable quality. Financial statements should be prepared in accordance with International Financial Reporting Standards (IFRS) or other high-quality accounting standards. The regulator should have the authority to require restatement of financial statements if they are materially misstated.", "topic_tags": ["issuers", "accounting", "ifrs", "financial-statements"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 18, "category": "Issuers"}
+    },
+    {
+      "provision_uid": "IOSCO-P19", "source_id": "IOSCO", "part": "Principles for Issuers", "item_id": "P19",
+      "title": "Principle 19 - Auditors and Audit Quality", "text": "Auditors should be subject to adequate levels of oversight. Audit standards should be of a high and internationally acceptable quality. Auditors should be independent of the entities they audit, and subject to an effective system of quality assurance.", "topic_tags": ["issuers", "auditors", "audit-quality", "independence"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 19, "category": "Issuers"}
+    },
+    {
+      "provision_uid": "IOSCO-P20", "source_id": "IOSCO", "part": "Principles for Issuers", "item_id": "P20",
+      "title": "Principle 20 - Fair Treatment of Holders", "text": "Holders of securities in a company should be treated in a fair and equitable manner. The regulatory framework should provide for shareholder protections, including rights to attend and vote at meetings, receive dividends, access company information, and participate in fundamental decisions. Minority shareholder protections should be adequate.", "topic_tags": ["issuers", "shareholder-rights", "fairness", "minority-protection"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 20, "category": "Issuers"}
+    },
+    {
+      "provision_uid": "IOSCO-P21", "source_id": "IOSCO", "part": "Principles for Auditors, CRAs and Other Intermediaries", "item_id": "P21",
+      "title": "Principle 21 - Auditor Oversight", "text": "Audit oversight should be established as an arrangement that serves the public interest. The oversight system should be independent from the audit profession. The oversight body should have the authority to set or adopt audit standards, conduct inspections, and impose sanctions. Auditors should be required to maintain independence from their audit clients.", "topic_tags": ["auditors", "oversight", "independence", "audit-standards"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 21, "category": "Auditors and Intermediaries"}
+    },
+    {
+      "provision_uid": "IOSCO-P22", "source_id": "IOSCO", "part": "Principles for Auditors, CRAs and Other Intermediaries", "item_id": "P22",
+      "title": "Principle 22 - Credit Rating Agencies", "text": "Credit rating agencies should be subject to adequate levels of oversight. The regulatory system should ensure that CRAs whose ratings are used for regulatory purposes are subject to registration and ongoing supervision. CRA oversight should address: conflicts of interest management, quality and integrity of the rating process, transparency of methodologies, and periodic review of ratings.", "topic_tags": ["cra", "credit-rating", "oversight", "conflicts-of-interest"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 22, "category": "Auditors and Intermediaries"}
+    },
+    {
+      "provision_uid": "IOSCO-P23", "source_id": "IOSCO", "part": "Principles for Auditors, CRAs and Other Intermediaries", "item_id": "P23",
+      "title": "Principle 23 - Other Intermediaries", "text": "Other entities that offer investors analytical or evaluative services should be subject to oversight and regulation appropriate to the impact of their activities on the market and the degree to which the regulatory system relies upon them. This includes index providers, proxy advisors, and data analytics providers.", "topic_tags": ["intermediaries", "oversight", "index-providers", "proxy-advisors"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 23, "category": "Auditors and Intermediaries"}
+    },
+    {
+      "provision_uid": "IOSCO-P24", "source_id": "IOSCO", "part": "Principles for Auditors, CRAs and Other Intermediaries", "item_id": "P24",
+      "title": "Principle 24 - Financial Benchmark Integrity", "text": "The regulatory system should require the integrity and reliability of financial benchmarks. Benchmark administrators should be subject to appropriate oversight and should have governance arrangements to manage conflicts of interest. The methodology used to determine benchmark rates should be transparent, robust, and subject to accountability. Submissions to benchmarks should be based on actual transactions where possible.", "topic_tags": ["benchmarks", "integrity", "governance", "methodology"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 24, "category": "Auditors and Intermediaries"}
+    },
+    {
+      "provision_uid": "IOSCO-P25", "source_id": "IOSCO", "part": "Principles for Collective Investment Schemes", "item_id": "P25",
+      "title": "Principle 25 - CIS Regulatory System", "text": "The regulatory system should set standards for the eligibility, governance, organisation and operational conduct of those who wish to market or operate a collective investment scheme (CIS). The operator of a CIS should be required to maintain adequate financial resources, have appropriate organisational arrangements, and act in the best interest of the investors in the scheme.", "topic_tags": ["cis", "collective-investment", "funds", "eligibility", "governance"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 25, "category": "Collective Investment Schemes"}
+    },
+    {
+      "provision_uid": "IOSCO-P26", "source_id": "IOSCO", "part": "Principles for Collective Investment Schemes", "item_id": "P26",
+      "title": "Principle 26 - CIS Legal Form and Structure", "text": "The regulatory system should provide for rules governing the legal form and structure of collective investment schemes and the segregation and protection of client assets. Investor assets should be segregated from the assets of the scheme operator. The custodial arrangements should be adequate to protect investor assets.", "topic_tags": ["cis", "legal-structure", "asset-segregation", "custody"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 26, "category": "Collective Investment Schemes"}
+    },
+    {
+      "provision_uid": "IOSCO-P27", "source_id": "IOSCO", "part": "Principles for Collective Investment Schemes", "item_id": "P27",
+      "title": "Principle 27 - CIS Disclosure", "text": "Regulation should require disclosure, as set forth under the principles for issuers, which is necessary to evaluate the suitability of a collective investment scheme for a particular investor and the value of the investor's interest in the scheme. Investors should receive a prospectus or offering document that contains key information, including investment objectives, risks, fees and charges, past performance, and information about the operator.", "topic_tags": ["cis", "disclosure", "prospectus", "investor-information"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 27, "category": "Collective Investment Schemes"}
+    },
+    {
+      "provision_uid": "IOSCO-P28", "source_id": "IOSCO", "part": "Principles for Collective Investment Schemes", "item_id": "P28",
+      "title": "Principle 28 - CIS Valuation and Pricing", "text": "Regulation should ensure that there is a proper and disclosed basis for asset valuation and the pricing and the redemption of units in a collective investment scheme. Valuation should be conducted at regular intervals and should reflect fair value. The valuation methodology should be documented and consistently applied.", "topic_tags": ["cis", "valuation", "pricing", "redemption", "nav"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 28, "category": "Collective Investment Schemes"}
+    },
+    {
+      "provision_uid": "IOSCO-P29", "source_id": "IOSCO", "part": "Principles for Collective Investment Schemes", "item_id": "P29",
+      "title": "Principle 29 - Hedge Fund Regulation", "text": "Regulation should provide for minimum entry standards for market intermediaries that manage or advise on hedge funds. Hedge fund managers/advisers should be subject to registration, adequate organisational standards, disclosure requirements, and supervision. Systemic risk data collection should be conducted on a regular basis.", "topic_tags": ["cis", "hedge-funds", "registration", "systemic-risk", "disclosure"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 29, "category": "Collective Investment Schemes"}
+    },
+    {
+      "provision_uid": "IOSCO-P30", "source_id": "IOSCO", "part": "Principles for Collective Investment Schemes", "item_id": "P30",
+      "title": "Principle 30 - CIS Conflicts of Interest", "text": "The regulatory system should provide for rules governing the constitution of collective investment schemes and should ensure proper and disclosed management of conflicts of interest. Operators of CIS should identify, manage, and where applicable disclose actual and potential conflicts of interest. Transactions between the scheme and related parties should be subject to appropriate safeguards.", "topic_tags": ["cis", "conflicts-of-interest", "related-party", "governance"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 30, "category": "Collective Investment Schemes"}
+    },
+    {
+      "provision_uid": "IOSCO-P31", "source_id": "IOSCO", "part": "Principles for Secondary Markets", "item_id": "P31",
+      "title": "Principle 31 - Exchange/Trading Platform Authorization", "text": "The establishment of trading systems including securities exchanges should be subject to regulatory authorization and oversight. Trading systems should have fair and equitable rules governing access, trading, and listing. The rules of the trading system should be approved by the regulator and should be publicly available.", "topic_tags": ["secondary-markets", "exchanges", "authorization", "trading-platforms"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 31, "category": "Secondary Markets"}
+    },
+    {
+      "provision_uid": "IOSCO-P32", "source_id": "IOSCO", "part": "Principles for Secondary Markets", "item_id": "P32",
+      "title": "Principle 32 - Ongoing Regulatory Oversight of Trading", "text": "There should be ongoing regulatory supervision of exchanges and trading platforms, which should aim to ensure that the integrity of trading is maintained through fair and equitable rules that strike an appropriate balance between the demands of different market participants. Supervision should address order handling, trade execution, and post-trade processing.", "topic_tags": ["secondary-markets", "supervision", "trading-integrity", "market-surveillance"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 32, "category": "Secondary Markets"}
+    },
+    {
+      "provision_uid": "IOSCO-P33", "source_id": "IOSCO", "part": "Principles for Secondary Markets", "item_id": "P33",
+      "title": "Principle 33 - Proper Trade Transparency", "text": "Regulation should promote transparency of trading. Pre-trade and post-trade transparency regimes should be in place for equity and non-equity markets. The level of transparency should be appropriate to the nature and type of the market and should take into account the need to protect the integrity of markets and the legitimate information needs of participants.", "topic_tags": ["secondary-markets", "transparency", "pre-trade", "post-trade"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 33, "category": "Secondary Markets"}
+    },
+    {
+      "provision_uid": "IOSCO-P34", "source_id": "IOSCO", "part": "Principles for Secondary Markets", "item_id": "P34",
+      "title": "Principle 34 - Detection and Deterrence of Manipulation", "text": "Regulation should be designed to detect and deter manipulation and other unfair trading practices. Market abuse provisions should cover insider trading, market manipulation, and other forms of misconduct. Market surveillance systems should be adequate to detect suspicious trading patterns. Penalties for market abuse should be effective, proportionate and dissuasive.", "topic_tags": ["secondary-markets", "market-abuse", "manipulation", "insider-trading", "surveillance"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 34, "category": "Secondary Markets"}
+    },
+    {
+      "provision_uid": "IOSCO-P35", "source_id": "IOSCO", "part": "Principles for Secondary Markets", "item_id": "P35",
+      "title": "Principle 35 - Short Selling Regulation", "text": "Regulation should aim to ensure the proper management of large exposures, default risk and market disruption. Short selling should be subject to appropriate regulatory requirements including reporting/disclosure obligations, restrictions to prevent naked short selling, and circuit breakers to address disorderly markets.", "topic_tags": ["secondary-markets", "short-selling", "default-risk", "market-disruption"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 35, "category": "Secondary Markets"}
+    },
+    {
+      "provision_uid": "IOSCO-P36", "source_id": "IOSCO", "part": "Principles for Secondary Markets", "item_id": "P36",
+      "title": "Principle 36 - Market Intermediary Requirements", "text": "Regulation should aim to set minimum entry standards for market intermediaries. Market intermediaries should meet fit and proper tests, hold adequate financial resources, have proper organisational arrangements, and maintain appropriate records. Intermediaries should be subject to ongoing supervisory requirements covering capital adequacy, conduct of business, and client asset protection.", "topic_tags": ["secondary-markets", "intermediaries", "entry-standards", "capital-adequacy"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 36, "category": "Secondary Markets"}
+    },
+    {
+      "provision_uid": "IOSCO-P37", "source_id": "IOSCO", "part": "Principles for Secondary Markets", "item_id": "P37",
+      "title": "Principle 37 - Technology Risk Management", "text": "Regulation should promote the reduction of systemic risk arising from trading, clearing and settlement, including from the use of technology. Trading venues should have adequate business continuity and technology risk management arrangements. Circuit breakers and other mechanisms should be in place to address disorderly markets caused by technology failures or algorithmic trading.", "topic_tags": ["secondary-markets", "technology-risk", "systemic-risk", "algorithmic-trading", "resilience"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 37, "category": "Secondary Markets"}
+    },
+    {
+      "provision_uid": "IOSCO-P38", "source_id": "IOSCO", "part": "Principles for Central Counterparties", "item_id": "P38",
+      "title": "Principle 38 - Securities Settlement Systems and CCPs", "text": "Securities settlement systems and central counterparties should be subject to regulatory and supervisory requirements that are designed to ensure that they are fair, effective and efficient, and that they reduce systemic risk. CCPs should maintain robust risk management frameworks including credit risk management, margin requirements, default fund contributions, and recovery and resolution planning. Settlement systems should achieve delivery versus payment and settlement finality.", "topic_tags": ["ccp", "settlement-systems", "systemic-risk", "clearing", "margin"], "requirement_level": "mandatory", "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf", "metadata": {"principle_number": 38, "category": "Central Counterparties"}
+    }
+  ],
+  "definitions": [
+    {
+      "term": "Collective Investment Scheme (CIS)",
+      "definition": "An arrangement that pools investor capital for the purpose of collective investment, managed by an operator who invests the pooled capital in a portfolio of assets. Includes mutual funds, unit trusts, and similar vehicles.",
+      "source": "IOSCO",
+      "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf"
+    },
+    {
+      "term": "Self-Regulatory Organisation (SRO)",
+      "definition": "A non-governmental organization that exercises some degree of regulatory authority over an industry or profession, particularly in securities markets. Includes stock exchanges and national securities associations.",
+      "source": "IOSCO",
+      "url": "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD561.pdf"
+    }
+  ]
+}

@@ -1,0 +1,731 @@
+{
+  "sources": [
+    {
+      "id": "FATF_REC",
+      "full_name": "FATF Recommendations and Methodology",
+      "authority": "Financial Action Task Force",
+      "identifier": "FATF",
+      "category": "standard",
+      "priority": "critical",
+      "official_portal": "https://www.fatf-gafi.org",
+      "update_frequency": "monthly",
+      "last_updated": "2026-02-19",
+      "freshness_days": 60,
+      "coverage_note": "All 40 FATF Recommendations with interpretive notes."
+    },
+    {
+      "id": "FATF_LIST",
+      "full_name": "FATF high-risk and monitored jurisdictions",
+      "authority": "Financial Action Task Force",
+      "identifier": "FATF-LISTS",
+      "category": "monitoring",
+      "priority": "critical",
+      "official_portal": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "update_frequency": "quarterly",
+      "last_updated": "2026-02-19",
+      "freshness_days": 45,
+      "coverage_note": "Point-in-time snapshot of high-risk (black list) and increased monitoring (grey list) jurisdictions."
+    }
+  ],
+  "provisions": [
+    {
+      "provision_uid": "FATF_REC-R1",
+      "source_id": "FATF_REC",
+      "part": "AML/CFT Policies and Coordination",
+      "item_id": "R1",
+      "title": "Assessing Risks and Applying a Risk-Based Approach",
+      "text": "Countries should identify, assess, and understand the money laundering and terrorist financing risks for the country, and should take action, including designating an authority or mechanism to coordinate actions to assess risks, and apply resources, aimed at ensuring the risks are mitigated effectively. Based on that assessment, countries should apply a risk-based approach (RBA) to ensure that measures to prevent or mitigate money laundering and terrorist financing are commensurate with the risks identified. This approach should be an essential foundation to efficient allocation of resources across the anti-money laundering and countering the financing of terrorism regime.",
+      "topic_tags": ["aml", "cft", "risk-based-approach", "risk-assessment", "national-policy"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 1, "category": "AML/CFT Policies and Coordination"}
+    },
+    {
+      "provision_uid": "FATF_REC-R2",
+      "source_id": "FATF_REC",
+      "part": "AML/CFT Policies and Coordination",
+      "item_id": "R2",
+      "title": "National Cooperation and Coordination",
+      "text": "Countries should have national AML/CFT policies, informed by the risks identified, which should be regularly reviewed, and should designate an authority or have a coordination or other mechanism that is responsible for such policies. Countries should ensure that policy-makers, the financial intelligence unit (FIU), law enforcement authorities, supervisors and other relevant competent authorities, at the policy-making and operational levels, have effective mechanisms in place which enable them to cooperate, and, where appropriate, coordinate domestically with each other concerning the development and implementation of policies and activities to combat money laundering, terrorist financing and the financing of proliferation of weapons of mass destruction.",
+      "topic_tags": ["aml", "cft", "coordination", "national-policy", "fiu"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 2, "category": "AML/CFT Policies and Coordination"}
+    },
+    {
+      "provision_uid": "FATF_REC-R3",
+      "source_id": "FATF_REC",
+      "part": "Money Laundering and Confiscation",
+      "item_id": "R3",
+      "title": "Money Laundering Offence",
+      "text": "Countries should criminalise money laundering on the basis of the Vienna Convention and the Palermo Convention. Countries should apply the crime of money laundering to all serious offences, with a view to including the widest range of predicate offences. Predicate offences may be described by reference to all offences; or to a threshold linked either to a category of serious offences; or to the penalty of imprisonment applicable to the predicate offence; or to a list of predicate offences; or a combination of these approaches.",
+      "topic_tags": ["aml", "money-laundering", "criminalisation", "predicate-offences"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 3, "category": "Money Laundering and Confiscation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R4",
+      "source_id": "FATF_REC",
+      "part": "Money Laundering and Confiscation",
+      "item_id": "R4",
+      "title": "Confiscation and Provisional Measures",
+      "text": "Countries should adopt measures similar to those set forth in the Vienna Convention, the Palermo Convention, and the Terrorist Financing Convention, including legislative measures, to enable their competent authorities to freeze or seize and confiscate: property laundered; proceeds from, or instrumentalities used in or intended for use in money laundering or predicate offences; property that is the proceeds of, or used in, or intended or allocated for use in, the financing of terrorism, terrorist acts or terrorist organisations; or property of corresponding value.",
+      "topic_tags": ["aml", "confiscation", "asset-freezing", "provisional-measures"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 4, "category": "Money Laundering and Confiscation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R5",
+      "source_id": "FATF_REC",
+      "part": "Terrorist Financing and Financing of Proliferation",
+      "item_id": "R5",
+      "title": "Terrorist Financing Offence",
+      "text": "Countries should criminalise terrorist financing on the basis of the Terrorist Financing Convention, and should criminalise not only the financing of terrorist acts but also the financing of terrorist organisations and individual terrorists even in the absence of a link to a specific terrorist act or acts. Countries should ensure that such offences are designated as money laundering predicate offences.",
+      "topic_tags": ["cft", "terrorist-financing", "criminalisation"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 5, "category": "Terrorist Financing and Financing of Proliferation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R6",
+      "source_id": "FATF_REC",
+      "part": "Terrorist Financing and Financing of Proliferation",
+      "item_id": "R6",
+      "title": "Targeted Financial Sanctions Related to Terrorism and Terrorist Financing",
+      "text": "Countries should implement targeted financial sanctions regimes to comply with United Nations Security Council resolutions relating to the prevention and suppression of terrorism and terrorist financing. The regimes should require that financial institutions and designated non-financial businesses and professions freeze without delay the funds or other assets of, and ensure that no funds or other assets are made available to or for the benefit of, any person or entity designated by, or under the authority of, the United Nations Security Council under Chapter VII of the Charter of the United Nations.",
+      "topic_tags": ["cft", "sanctions", "targeted-financial-sanctions", "unsc"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 6, "category": "Terrorist Financing and Financing of Proliferation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R7",
+      "source_id": "FATF_REC",
+      "part": "Terrorist Financing and Financing of Proliferation",
+      "item_id": "R7",
+      "title": "Targeted Financial Sanctions Related to Proliferation",
+      "text": "Countries should implement targeted financial sanctions to comply with United Nations Security Council resolutions relating to the prevention, suppression and disruption of proliferation of weapons of mass destruction and its financing. These resolutions require countries to freeze without delay the funds or other assets of, and to ensure that no funds and other assets are made available, directly or indirectly, to or for the benefit of, any person or entity designated by, or under the authority of, the United Nations Security Council under Chapter VII of the Charter of the United Nations.",
+      "topic_tags": ["proliferation-financing", "sanctions", "wmd", "unsc"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 7, "category": "Terrorist Financing and Financing of Proliferation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R8",
+      "source_id": "FATF_REC",
+      "part": "Terrorist Financing and Financing of Proliferation",
+      "item_id": "R8",
+      "title": "Non-Profit Organisations",
+      "text": "Countries should review the adequacy of laws and regulations that relate to non-profit organisations (NPOs) which the country has identified as being vulnerable to terrorist financing abuse. Countries should apply focused, proportionate and effective measures to protect NPOs from terrorist financing abuse. Countries should ensure that the NPO sector is not being exploited by terrorist organisations and that targeted financial sanctions obligations are complied with.",
+      "topic_tags": ["cft", "npo", "non-profit", "terrorist-financing-abuse"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 8, "category": "Terrorist Financing and Financing of Proliferation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R9",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R9",
+      "title": "Financial Institution Secrecy Laws",
+      "text": "Countries should ensure that financial institution secrecy laws do not inhibit implementation of the FATF Recommendations. Countries should ensure that financial institution secrecy laws do not prevent the sharing of information between competent authorities, between financial institutions where required by the Recommendations, or between supervisory authorities.",
+      "topic_tags": ["aml", "secrecy-laws", "information-sharing", "preventive-measures"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 9, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R10",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R10",
+      "title": "Customer Due Diligence",
+      "text": "Financial institutions should be prohibited from keeping anonymous accounts or accounts in obviously fictitious names. Financial institutions should be required to undertake customer due diligence (CDD) measures when: establishing business relationships; carrying out occasional transactions above the applicable designated threshold (USD/EUR 15,000); there is a suspicion of money laundering or terrorist financing; or the financial institution has doubts about the veracity or adequacy of previously obtained customer identification data. CDD includes: identifying the customer and verifying identity; identifying the beneficial owner; understanding the nature and purpose of the business relationship; and conducting ongoing due diligence.",
+      "topic_tags": ["aml", "cdd", "kyc", "customer-due-diligence", "beneficial-ownership"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 10, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R11",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R11",
+      "title": "Record Keeping",
+      "text": "Financial institutions should be required to maintain, for at least five years, all necessary records on transactions, both domestic and international, to enable them to comply swiftly with information requests from the competent authorities. Such records must be sufficient to permit reconstruction of individual transactions so as to provide, if necessary, evidence for prosecution of criminal activity. Financial institutions should keep records on the identification data obtained through the CDD process, account files and business correspondence, for at least five years after the business relationship is ended.",
+      "topic_tags": ["aml", "record-keeping", "documentation", "retention"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 11, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R12",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R12",
+      "title": "Politically Exposed Persons (PEPs)",
+      "text": "Financial institutions should be required, in relation to foreign politically exposed persons (PEPs), to: put in place appropriate risk management systems to determine whether a customer or beneficial owner is a PEP; obtain senior management approval before establishing or continuing the business relationship; take reasonable measures to establish source of wealth and source of funds; and conduct enhanced ongoing monitoring. Similar measures should be applied in relation to domestic PEPs or persons who are or have been entrusted with a prominent function by an international organisation. Financial institutions should be required to apply enhanced CDD when business relationships are established with family members or close associates of PEPs.",
+      "topic_tags": ["aml", "pep", "politically-exposed-persons", "enhanced-due-diligence"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 12, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R13",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R13",
+      "title": "Correspondent Banking",
+      "text": "Financial institutions should be required, in relation to cross-border correspondent banking and other similar relationships, to: gather sufficient information about a respondent institution to understand the nature of the respondent's business; determine from publicly available information the reputation of the institution and the quality of supervision; assess the respondent institution's AML/CFT controls; obtain approval from senior management before establishing new correspondent relationships; clearly understand the respective AML/CFT responsibilities of each institution; and be satisfied that the respondent has performed CDD on customers having direct access to accounts of the correspondent.",
+      "topic_tags": ["aml", "correspondent-banking", "cross-border", "enhanced-due-diligence"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 13, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R14",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R14",
+      "title": "Money or Value Transfer Services",
+      "text": "Countries should take measures to ensure that natural or legal persons that provide money or value transfer services (MVTS) are licensed or registered, and subject to effective systems for monitoring and ensuring compliance with the relevant measures called for in the FATF Recommendations. Countries should take action to identify natural or legal persons that carry out MVTS without a licence or registration, and to apply appropriate sanctions. Any natural or legal person working as an agent should be licensed or registered by a competent authority, or the MVTS provider should maintain a current list of its agents.",
+      "topic_tags": ["aml", "mvts", "money-transfer", "licensing", "registration"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 14, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R15",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R15",
+      "title": "New Technologies (including Virtual Assets)",
+      "text": "Countries and financial institutions should identify and assess the money laundering or terrorist financing risks that may arise in relation to the development of new products and new business practices, including new delivery mechanisms, and the use of new or developing technologies for both new and pre-existing products. Countries should ensure that virtual asset service providers (VASPs) are regulated for AML/CFT purposes, licensed or registered, and subject to effective systems for monitoring and ensuring compliance. VASPs should be required to comply with the same AML/CFT measures as financial institutions, including CDD, record-keeping, suspicious transaction reporting, and the travel rule.",
+      "topic_tags": ["aml", "virtual-assets", "vasp", "new-technologies", "travel-rule"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 15, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R16",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R16",
+      "title": "Wire Transfers (Travel Rule)",
+      "text": "Countries should ensure that financial institutions include required and accurate originator information, and required beneficiary information, on wire transfers and related messages, and that the information remains with the wire transfer or related message throughout the payment chain. Countries should ensure that financial institutions monitor wire transfers for the purpose of detecting those which lack required originator and/or beneficiary information, and take appropriate measures. The travel rule also applies to virtual asset transfers conducted by VASPs.",
+      "topic_tags": ["aml", "wire-transfers", "travel-rule", "originator-information", "vasp"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 16, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R17",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R17",
+      "title": "Reliance on Third Parties",
+      "text": "Countries may permit financial institutions to rely on third parties to perform elements of CDD or to introduce business, provided that: the institution relying on the third party immediately obtains the necessary CDD information; the institution relying on the third party takes adequate steps to satisfy itself that copies of identification data and other relevant documentation will be made available upon request; and the institution relying on the third party satisfies itself that the third party is regulated and supervised and has measures in place for compliance with CDD and record-keeping requirements.",
+      "topic_tags": ["aml", "third-party-reliance", "cdd", "outsourcing"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 17, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R18",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R18",
+      "title": "Internal Controls and Foreign Branches and Subsidiaries",
+      "text": "Financial institutions should be required to implement programmes against money laundering and terrorist financing. Financial groups should implement group-wide AML/CFT programmes. These programmes should include: internal policies, procedures and controls, including appropriate compliance management arrangements, and adequate screening procedures for hiring employees; an ongoing employee training programme; and an independent audit function to test the system. Financial institutions should ensure that their foreign branches and majority-owned subsidiaries apply AML/CFT measures consistent with the home country requirements.",
+      "topic_tags": ["aml", "internal-controls", "compliance-programme", "group-wide"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 18, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R19",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R19",
+      "title": "Higher-Risk Countries",
+      "text": "Financial institutions should be required to apply enhanced due diligence measures to business relationships and transactions with natural and legal persons, and financial institutions, from countries for which this is called for by the FATF. The type of enhanced due diligence applied should be effective and proportionate to the risks. Countries should be able to apply appropriate countermeasures when called upon to do so by the FATF. Countries should also be able to apply countermeasures independently of any call by the FATF to do so.",
+      "topic_tags": ["aml", "higher-risk-countries", "enhanced-due-diligence", "countermeasures"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 19, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R20",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R20",
+      "title": "Reporting of Suspicious Transactions",
+      "text": "If a financial institution suspects or has reasonable grounds to suspect that funds are the proceeds of a criminal activity, or are related to terrorist financing, it should be required, by law, to report promptly its suspicions to the financial intelligence unit (FIU). The obligation to file a suspicious transaction report should apply regardless of whether the transaction is attempted, or whether or not it involves tax matters.",
+      "topic_tags": ["aml", "suspicious-transactions", "reporting", "fiu", "str"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 20, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R21",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures",
+      "item_id": "R21",
+      "title": "Tipping-off and Confidentiality",
+      "text": "Financial institutions, their directors, officers and employees should be: protected by law from criminal and civil liability for breach of any restriction on disclosure of information if they report their suspicions in good faith to the FIU; and prohibited by law from disclosing (tipping-off) the fact that a suspicious transaction report or related information is being filed with the FIU.",
+      "topic_tags": ["aml", "tipping-off", "confidentiality", "str", "safe-harbour"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 21, "category": "Preventive Measures"}
+    },
+    {
+      "provision_uid": "FATF_REC-R22",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures - DNFBPs",
+      "item_id": "R22",
+      "title": "DNFBPs: Customer Due Diligence",
+      "text": "The CDD and record-keeping requirements set out in Recommendations 10, 11, 12, 15 and 17 apply to designated non-financial businesses and professions (DNFBPs) in specified situations: casinos when customers engage in transactions >= USD/EUR 3,000; real estate agents when involved in transactions for clients; dealers in precious metals and stones when cash transactions >= USD/EUR 15,000; lawyers, notaries, accountants when they prepare for or carry out certain transactions for clients.",
+      "topic_tags": ["aml", "dnfbp", "cdd", "gatekeepers", "real-estate", "lawyers"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 22, "category": "Preventive Measures - DNFBPs"}
+    },
+    {
+      "provision_uid": "FATF_REC-R23",
+      "source_id": "FATF_REC",
+      "part": "Preventive Measures - DNFBPs",
+      "item_id": "R23",
+      "title": "DNFBPs: Other Measures",
+      "text": "The requirements set out in Recommendations 18 to 21 apply to all designated non-financial businesses and professions, subject to specified qualifications. Lawyers, notaries, other independent legal professionals, and accountants should be required to report suspicious transactions when they prepare for or carry out specified transactions. Dealers in precious metals and precious stones should report when engaged in cash transactions >= USD/EUR 15,000. Trust and company service providers should report when they prepare for or carry out transactions for clients.",
+      "topic_tags": ["aml", "dnfbp", "reporting", "str", "gatekeepers"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 23, "category": "Preventive Measures - DNFBPs"}
+    },
+    {
+      "provision_uid": "FATF_REC-R24",
+      "source_id": "FATF_REC",
+      "part": "Transparency and Beneficial Ownership",
+      "item_id": "R24",
+      "title": "Transparency and Beneficial Ownership of Legal Persons",
+      "text": "Countries should ensure that there is adequate, accurate and up-to-date information on the beneficial ownership and control of legal persons that can be obtained or accessed in a timely fashion by competent authorities. Countries should use one or more of the following mechanisms: a registry approach (countries should require that beneficial ownership information is held by a public authority or body, and that such information is adequate, accurate and up-to-date); a company approach; an existing information approach. Countries should assess the ML/TF risks associated with the types of legal persons created in the country, and take measures to prevent the misuse of legal persons for ML/TF.",
+      "topic_tags": ["aml", "beneficial-ownership", "transparency", "legal-persons", "registry"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 24, "category": "Transparency and Beneficial Ownership"}
+    },
+    {
+      "provision_uid": "FATF_REC-R25",
+      "source_id": "FATF_REC",
+      "part": "Transparency and Beneficial Ownership",
+      "item_id": "R25",
+      "title": "Transparency and Beneficial Ownership of Legal Arrangements",
+      "text": "Countries should ensure that there is adequate, accurate and up-to-date information on express trusts, including information on the settlor, trustee(s), protector (if any), beneficiaries or class of beneficiaries, and any other natural person exercising ultimate effective control over the trust, that can be obtained or accessed in a timely fashion by competent authorities. Countries should require that trustees of express trusts maintain and hold adequate, accurate and current beneficial ownership information regarding the trust. Countries should facilitate access by financial institutions and DNFBPs to beneficial ownership information.",
+      "topic_tags": ["aml", "beneficial-ownership", "trusts", "legal-arrangements", "transparency"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 25, "category": "Transparency and Beneficial Ownership"}
+    },
+    {
+      "provision_uid": "FATF_REC-R26",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R26",
+      "title": "Regulation and Supervision of Financial Institutions",
+      "text": "Countries should ensure that financial institutions are subject to adequate regulation and supervision and are effectively implementing the FATF Recommendations. Competent authorities or financial supervisors should take the necessary legal or regulatory measures to prevent criminals or their associates from holding, or being the beneficial owner of, a significant or controlling interest, or holding a management function in a financial institution. Countries should ensure that financial institutions are subject to risk-based AML/CFT supervision.",
+      "topic_tags": ["aml", "supervision", "regulation", "financial-institutions", "fit-and-proper"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 26, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R27",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R27",
+      "title": "Powers of Supervisors",
+      "text": "Supervisors should have adequate powers to supervise or monitor, and ensure compliance by, financial institutions with requirements to combat money laundering and terrorist financing. Supervisors should have the authority to: conduct inspections (including on-site); compel production of documents; and impose administrative sanctions for failure to comply with AML/CFT requirements.",
+      "topic_tags": ["aml", "supervisory-powers", "inspections", "sanctions", "enforcement"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 27, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R28",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R28",
+      "title": "Regulation and Supervision of DNFBPs",
+      "text": "Designated non-financial businesses and professions should be subject to regulatory and supervisory measures as set out below: Casinos should be subject to a comprehensive regulatory and supervisory regime. Countries should ensure that the other categories of DNFBPs are subject to effective systems for monitoring and ensuring compliance with AML/CFT requirements. This should be performed on a risk-sensitive basis.",
+      "topic_tags": ["aml", "dnfbp", "supervision", "regulation", "casinos"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 28, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R29",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R29",
+      "title": "Financial Intelligence Units",
+      "text": "Countries should establish a financial intelligence unit (FIU) that serves as a national centre for the receipt and analysis of suspicious transaction reports and other information relevant to money laundering, associated predicate offences and terrorist financing, and for the dissemination of the results of that analysis. The FIU should be able to obtain additional information from reporting entities, and should have access on a timely basis to the financial, administrative and law enforcement information that it requires to undertake its functions properly.",
+      "topic_tags": ["aml", "fiu", "financial-intelligence", "suspicious-transactions", "analysis"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 29, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R30",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R30",
+      "title": "Responsibilities of Law Enforcement and Investigative Authorities",
+      "text": "Countries should ensure that designated law enforcement authorities have responsibility for money laundering and terrorist financing investigations within the framework of national AML/CFT policies. Countries should ensure that there is a designated authority that has the responsibility for expeditiously identifying, tracing and initiating actions to freeze and seize property that is, or may become, subject to confiscation. Countries should ensure that law enforcement authorities and any other competent authority use a range of investigative techniques.",
+      "topic_tags": ["aml", "law-enforcement", "investigation", "asset-recovery"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 30, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R31",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R31",
+      "title": "Powers of Law Enforcement and Investigative Authorities",
+      "text": "When conducting investigations of money laundering, associated predicate offences and terrorist financing, competent authorities should be able to obtain access to all necessary documents and information for use in those investigations, and in prosecutions and related actions. This should include powers to use compulsory measures for the production of records held by financial institutions, DNFBPs and other natural or legal persons.",
+      "topic_tags": ["aml", "law-enforcement", "investigative-powers", "compulsory-measures"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 31, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R32",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R32",
+      "title": "Cash Couriers",
+      "text": "Countries should have measures in place to detect the physical cross-border transportation of currency and bearer negotiable instruments, including through a declaration system and/or a disclosure system. Countries should ensure that their competent authorities have the legal authority to stop or restrain currency or bearer negotiable instruments that are suspected to be related to terrorist financing, money laundering or predicate offences, or that are falsely declared or disclosed.",
+      "topic_tags": ["aml", "cash-couriers", "cross-border", "declaration", "bearer-instruments"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 32, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R33",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R33",
+      "title": "Statistics",
+      "text": "Countries should maintain comprehensive statistics on matters relevant to the effectiveness and efficiency of their AML/CFT systems. This should include statistics on the STRs received and disseminated; on money laundering and terrorist financing investigations, prosecutions and convictions; on property frozen, seized and confiscated; and on mutual legal assistance or other international requests for cooperation.",
+      "topic_tags": ["aml", "statistics", "effectiveness", "monitoring"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 33, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R34",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R34",
+      "title": "Guidance and Feedback",
+      "text": "The competent authorities, supervisors and SRBs should establish guidelines, and provide feedback, which will assist financial institutions and designated non-financial businesses and professions in applying national measures to combat money laundering and terrorist financing, and, in particular, in detecting and reporting suspicious transactions.",
+      "topic_tags": ["aml", "guidance", "feedback", "suspicious-transactions"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 34, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R35",
+      "source_id": "FATF_REC",
+      "part": "Powers and Responsibilities of Competent Authorities",
+      "item_id": "R35",
+      "title": "Sanctions",
+      "text": "Countries should ensure that there is a range of effective, proportionate and dissuasive sanctions, whether criminal, civil or administrative, available to deal with natural or legal persons that fail to comply with AML/CFT requirements. Sanctions should be applicable to financial institutions and DNFBPs that fail to comply, and to their directors and senior management.",
+      "topic_tags": ["aml", "sanctions", "enforcement", "penalties", "compliance"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 35, "category": "Powers and Responsibilities of Competent Authorities"}
+    },
+    {
+      "provision_uid": "FATF_REC-R36",
+      "source_id": "FATF_REC",
+      "part": "International Cooperation",
+      "item_id": "R36",
+      "title": "International Instruments",
+      "text": "Countries should take immediate steps to become party to and implement fully the Vienna Convention 1988, the Palermo Convention 2000, the United Nations Convention against Corruption 2003, and the Terrorist Financing Convention 1999. Where applicable, countries are also encouraged to ratify and implement other relevant international conventions, such as the Council of Europe Convention on Laundering, Search, Seizure and Confiscation of the Proceeds from Crime and on the Financing of Terrorism (2005).",
+      "topic_tags": ["international-cooperation", "conventions", "mutual-legal-assistance"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 36, "category": "International Cooperation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R37",
+      "source_id": "FATF_REC",
+      "part": "International Cooperation",
+      "item_id": "R37",
+      "title": "Mutual Legal Assistance",
+      "text": "Countries should rapidly, constructively and effectively provide the widest possible range of mutual legal assistance in relation to money laundering, associated predicate offences and terrorist financing investigations, prosecutions and related proceedings. Countries should have an adequate legal basis for providing assistance and, where appropriate, should have in place treaties, arrangements or other mechanisms to enhance cooperation.",
+      "topic_tags": ["international-cooperation", "mutual-legal-assistance", "mla", "investigations"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 37, "category": "International Cooperation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R38",
+      "source_id": "FATF_REC",
+      "part": "International Cooperation",
+      "item_id": "R38",
+      "title": "Mutual Legal Assistance: Freezing and Confiscation",
+      "text": "Countries should ensure that they have the authority to take expeditious action in response to requests by foreign countries to identify, freeze, seize and confiscate: property laundered; proceeds from, instrumentalities used in or intended for use in money laundering or predicate offences; property of corresponding value; or property used for or intended to be used for the financing of terrorism. Countries should also have effective mechanisms for managing frozen, seized or confiscated property, and arrangements for coordinating seizure and confiscation proceedings.",
+      "topic_tags": ["international-cooperation", "mutual-legal-assistance", "confiscation", "freezing"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 38, "category": "International Cooperation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R39",
+      "source_id": "FATF_REC",
+      "part": "International Cooperation",
+      "item_id": "R39",
+      "title": "Extradition",
+      "text": "Countries should constructively and effectively execute extradition requests in relation to money laundering and terrorist financing, without undue delay. Countries should ensure they have a clear and efficient process for the execution of extradition requests. Each country should either extradite its own nationals or, where a country does not do so solely on the grounds of nationality, that country should submit the case without undue delay to its competent authorities for the purpose of prosecution.",
+      "topic_tags": ["international-cooperation", "extradition", "prosecution"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 39, "category": "International Cooperation"}
+    },
+    {
+      "provision_uid": "FATF_REC-R40",
+      "source_id": "FATF_REC",
+      "part": "International Cooperation",
+      "item_id": "R40",
+      "title": "Other Forms of International Cooperation",
+      "text": "Countries should ensure that their competent authorities can rapidly, constructively and effectively provide the widest range of international cooperation in relation to money laundering, associated predicate offences and terrorist financing. This should include: exchanges of information (spontaneous and upon request); use of effective gateways for information exchange; clear and efficient processes for prioritising and executing requests; and safeguards and controls on the use of exchanged information.",
+      "topic_tags": ["international-cooperation", "information-exchange", "competent-authorities"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html",
+      "metadata": {"recommendation_number": 40, "category": "International Cooperation"}
+    },
+    {
+      "provision_uid": "FATF_LIST-IRN",
+      "source_id": "FATF_LIST",
+      "part": "High-Risk Jurisdictions",
+      "item_id": "FATF-HR-IRN",
+      "title": "Iran - High-Risk Jurisdiction",
+      "text": "Iran is identified by the FATF as a jurisdiction with strategic AML/CFT deficiencies for which a call for action applies. The FATF calls on its members and urges all jurisdictions to apply effective counter-measures and enhanced due diligence measures proportionate to the risks arising from the jurisdiction.",
+      "topic_tags": ["fatf-list", "high-risk", "counter-measures", "iran"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "metadata": {}
+    },
+    {
+      "provision_uid": "FATF_LIST-PRK",
+      "source_id": "FATF_LIST",
+      "part": "High-Risk Jurisdictions",
+      "item_id": "FATF-HR-PRK",
+      "title": "DPRK - High-Risk Jurisdiction",
+      "text": "The Democratic People's Republic of Korea is subject to FATF counter-measures due to the serious threat its illicit activities pose to the integrity of the international financial system. The FATF calls on its members and urges all jurisdictions to apply counter-measures to protect the international financial system from the ongoing ML/TF/PF risks emanating from the DPRK.",
+      "topic_tags": ["fatf-list", "high-risk", "counter-measures", "dprk"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "metadata": {}
+    },
+    {
+      "provision_uid": "FATF_LIST-MMR",
+      "source_id": "FATF_LIST",
+      "part": "High-Risk Jurisdictions",
+      "item_id": "FATF-HR-MMR",
+      "title": "Myanmar - High-Risk Jurisdiction",
+      "text": "Myanmar failed to address strategic deficiencies in its AML/CFT regime. The FATF calls on its members and urges all jurisdictions to apply enhanced due diligence measures proportionate to the risks arising from the jurisdiction.",
+      "topic_tags": ["fatf-list", "high-risk", "counter-measures", "myanmar"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "metadata": {}
+    },
+    {
+      "provision_uid": "FATF_LIST-TUR",
+      "source_id": "FATF_LIST",
+      "part": "Increased Monitoring (Grey List)",
+      "item_id": "FATF-IM-TUR",
+      "title": "Turkey - Increased Monitoring",
+      "text": "Turkey is working with the FATF to address identified strategic deficiencies in its AML/CFT regime. Turkey has made progress on its action plan but further work remains in areas including beneficial ownership transparency, risk-based supervision, and international cooperation.",
+      "topic_tags": ["fatf-list", "grey-list", "increased-monitoring", "turkey"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "metadata": {}
+    },
+    {
+      "provision_uid": "FATF_LIST-NGA",
+      "source_id": "FATF_LIST",
+      "part": "Increased Monitoring (Grey List)",
+      "item_id": "FATF-IM-NGA",
+      "title": "Nigeria - Increased Monitoring",
+      "text": "Nigeria committed to a comprehensive action plan to strengthen its AML/CFT regime. Key areas include: improving risk-based supervision, strengthening the FIU, enhancing beneficial ownership transparency, and ensuring proportionate sanctions for AML/CFT violations.",
+      "topic_tags": ["fatf-list", "grey-list", "increased-monitoring", "nigeria"],
+      "requirement_level": "mandatory",
+      "url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "metadata": {}
+    }
+  ],
+  "definitions": [
+    {
+      "term": "Customer Due Diligence (CDD)",
+      "definition": "The process of identifying and verifying the identity of customers, understanding the nature and purpose of the business relationship, and conducting ongoing monitoring of transactions and activities.",
+      "source": "FATF_REC",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html"
+    },
+    {
+      "term": "Financial Intelligence Unit (FIU)",
+      "definition": "A national centre for the receipt and analysis of suspicious transaction reports and other information relevant to money laundering, associated predicate offences and terrorist financing, and for the dissemination of the results of that analysis.",
+      "source": "FATF_REC",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html"
+    },
+    {
+      "term": "Beneficial Owner",
+      "definition": "The natural person(s) who ultimately owns or controls a customer and/or the natural person on whose behalf a transaction is being conducted. It also includes those persons who exercise ultimate effective control over a legal person or arrangement.",
+      "source": "FATF_REC",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html"
+    },
+    {
+      "term": "Politically Exposed Person (PEP)",
+      "definition": "An individual who is or has been entrusted with a prominent public function. This includes heads of state, senior politicians, senior government officials, judicial or military officials, senior executives of state-owned corporations, and important political party officials.",
+      "source": "FATF_REC",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html"
+    },
+    {
+      "term": "Virtual Asset Service Provider (VASP)",
+      "definition": "Any natural or legal person that as a business conducts one or more of the following activities or operations for or on behalf of another natural or legal person: exchange between virtual assets and fiat currencies; exchange between one or more forms of virtual assets; transfer of virtual assets; safekeeping and/or administration of virtual assets; participation in and provision of financial services related to an issuer's offer and/or sale of a virtual asset.",
+      "source": "FATF_REC",
+      "url": "https://www.fatf-gafi.org/en/recommendations.html"
+    }
+  ],
+  "fatf_country_status": [
+    {
+      "country_code": "IRN",
+      "country_name": "Iran",
+      "list_type": "black",
+      "status": "High-Risk Jurisdiction subject to a Call for Action",
+      "as_of_date": "2026-02-14",
+      "source_url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "notes": "Iran has not completed its action plan. The FATF calls on its members to apply counter-measures."
+    },
+    {
+      "country_code": "PRK",
+      "country_name": "Democratic People's Republic of Korea",
+      "list_type": "black",
+      "status": "High-Risk Jurisdiction subject to a Call for Action",
+      "as_of_date": "2026-02-14",
+      "source_url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "notes": "DPRK is subject to FATF counter-measures due to the serious threat its illicit activities pose to the international financial system."
+    },
+    {
+      "country_code": "MMR",
+      "country_name": "Myanmar",
+      "list_type": "black",
+      "status": "High-Risk Jurisdiction subject to a Call for Action",
+      "as_of_date": "2026-02-14",
+      "source_url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "notes": "Myanmar failed to address strategic deficiencies in its AML/CFT regime."
+    },
+    {
+      "country_code": "TUR",
+      "country_name": "Turkey",
+      "list_type": "grey",
+      "status": "Jurisdictions under Increased Monitoring",
+      "as_of_date": "2026-02-14",
+      "source_url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "notes": "Turkey is working with the FATF to address identified strategic deficiencies."
+    },
+    {
+      "country_code": "NGA",
+      "country_name": "Nigeria",
+      "list_type": "grey",
+      "status": "Jurisdictions under Increased Monitoring",
+      "as_of_date": "2026-02-14",
+      "source_url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "notes": "Nigeria committed to a comprehensive action plan to strengthen its AML/CFT regime."
+    },
+    {
+      "country_code": "ZAF",
+      "country_name": "South Africa",
+      "list_type": "grey",
+      "status": "Jurisdictions under Increased Monitoring",
+      "as_of_date": "2026-02-14",
+      "source_url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "notes": "South Africa is working to address deficiencies in beneficial ownership, supervision of DNFBPs, and TF investigations."
+    },
+    {
+      "country_code": "YEM",
+      "country_name": "Yemen",
+      "list_type": "grey",
+      "status": "Jurisdictions under Increased Monitoring",
+      "as_of_date": "2026-02-14",
+      "source_url": "https://www.fatf-gafi.org/en/countries/black-and-grey-lists.html",
+      "notes": "Yemen committed to address strategic deficiencies in its AML/CFT framework."
+    }
+  ],
+  "mutual_evaluations": [
+    {
+      "jurisdiction_code": "GBR",
+      "jurisdiction_name": "United Kingdom",
+      "assessment_body": "FATF",
+      "publication_date": "2018-12-07",
+      "overall_rating": "Largely Compliant",
+      "executive_summary": "The UK has a well-developed and robust AML/CFT regime with strong legal and institutional frameworks. It demonstrates sustained commitment to combating money laundering and terrorist financing.",
+      "key_findings": [
+        "Strong legal and institutional framework for AML/CFT",
+        "Effective use of financial intelligence by law enforcement",
+        "Supervisory approach is risk-based but could be enhanced for certain sectors",
+        "Beneficial ownership transparency could be improved"
+      ],
+      "priority_actions": [
+        "Strengthen supervision of trust and company service providers",
+        "Improve timeliness and quality of suspicious activity reports",
+        "Enhance beneficial ownership transparency for overseas entities"
+      ],
+      "source_url": "https://www.fatf-gafi.org/content/fatf-gafi/en/publications/Mutualevaluations/Mer-united-kingdom-2018.html"
+    },
+    {
+      "jurisdiction_code": "JPN",
+      "jurisdiction_name": "Japan",
+      "assessment_body": "FATF",
+      "publication_date": "2021-08-30",
+      "overall_rating": "Partially Compliant",
+      "executive_summary": "Japan has strengthened its AML/CFT framework in recent years but needs to demonstrate more effective implementation, particularly in risk-based supervision and use of financial intelligence.",
+      "key_findings": [
+        "National risk assessment is comprehensive but implementation needs improvement",
+        "Law enforcement achieves good results in domestic ML cases",
+        "DNFBP supervision is not commensurate with risk",
+        "Beneficial ownership information is not always accurate and up-to-date"
+      ],
+      "priority_actions": [
+        "Enhance risk-based AML/CFT supervision across all sectors",
+        "Increase use of financial intelligence for ML/TF investigations",
+        "Improve beneficial ownership transparency requirements"
+      ],
+      "source_url": "https://www.fatf-gafi.org/content/fatf-gafi/en/publications/Mutualevaluations/Mer-japan-2021.html"
+    },
+    {
+      "jurisdiction_code": "DEU",
+      "jurisdiction_name": "Germany",
+      "assessment_body": "FATF",
+      "publication_date": "2022-08-25",
+      "overall_rating": "Largely Compliant",
+      "executive_summary": "Germany has a mature AML/CFT system. The complexity of its federal structure creates challenges for consistent supervision and law enforcement coordination.",
+      "key_findings": [
+        "Comprehensive legal framework aligned with FATF standards",
+        "Federal structure creates coordination challenges between BaFin and state-level supervisors",
+        "FIU has been reorganized and capacity increased",
+        "Real estate sector supervision needs strengthening"
+      ],
+      "priority_actions": [
+        "Strengthen AML/CFT supervision of the real estate sector",
+        "Improve coordination between federal and state-level authorities",
+        "Enhance the transparency register and beneficial ownership framework"
+      ],
+      "source_url": "https://www.fatf-gafi.org/content/fatf-gafi/en/publications/Mutualevaluations/Mer-germany-2022.html"
+    }
+  ]
+}
