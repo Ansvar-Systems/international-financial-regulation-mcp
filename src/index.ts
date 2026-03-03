@@ -5,11 +5,9 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
-  Tool,
 } from '@modelcontextprotocol/sdk/types.js';
-import Database from 'better-sqlite3';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { SERVER_NAME, SERVER_VERSION } from './constants.js';
+import { openDatabase } from './db.js';
 import {
   aboutServer,
   checkDataFreshness,
@@ -22,55 +20,14 @@ import {
   listFinancialSources,
   mapToNationalRequirements,
   searchFinancialRegulation,
-  type CheckDataFreshnessInput,
-  type CheckFatfStatusInput,
-  type CompareRequirementsInput,
-  type GetBaselStandardInput,
-  type GetFatfRecommendationInput,
-  type GetMutualEvaluationSummaryInput,
-  type GetProvisionInput,
-  type ListSourcesInput,
-  type MapToNationalRequirementsInput,
-  type SearchFinancialRegulationInput,
 } from './tools/international-financial-regulation.js';
 
-const SERVER_NAME = 'international-financial-regulation-mcp';
-const SERVER_VERSION = '0.1.0';
-const DB_ENV_VAR = 'INTERNATIONAL_FINANCIAL_REGULATION_DB_PATH';
-const DEFAULT_DB_PATH = '../data/database.db';
-
-let dbInstance: Database.Database | null = null;
-
-function getDb(): Database.Database {
-  if (!dbInstance) {
-    const dbPath = process.env[DB_ENV_VAR] ?? getDefaultDbPath();
-    dbInstance = new Database(dbPath, { readonly: true });
-    dbInstance.pragma('foreign_keys = ON');
-    console.error(`[${SERVER_NAME}] Opened database at ${dbPath}`);
-  }
-
-  return dbInstance;
-}
-
-function closeDb(): void {
-  if (dbInstance) {
-    dbInstance.close();
-    dbInstance = null;
-  }
-}
-
-function getDefaultDbPath(): string {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
-  return path.resolve(__dirname, DEFAULT_DB_PATH);
-}
-
-const TOOLS: Tool[] = [
+const TOOLS = [
   {
     name: 'search_financial_regulation',
     description: 'Search Basel, FATF, IOSCO, IAIS, FSB, and CPMI-IOSCO provisions using full-text search.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         query: { type: 'string', description: 'Search query (FTS syntax supported).' },
         sources: {
@@ -99,7 +56,7 @@ const TOOLS: Tool[] = [
     name: 'get_provision',
     description: 'Retrieve a single provision by source and item ID, with optional national mapping links.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         source_id: { type: 'string', description: 'Source identifier (for example: BASEL, FATF_REC).' },
         item_id: { type: 'string', description: 'Provision identifier in that source (for example: R10).' },
@@ -119,7 +76,7 @@ const TOOLS: Tool[] = [
     name: 'get_basel_standard',
     description: 'List Basel standards or retrieve Basel provisions by standard ID and optional search query.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         standard_id: {
           type: 'string',
@@ -138,7 +95,7 @@ const TOOLS: Tool[] = [
     name: 'get_fatf_recommendation',
     description: 'Retrieve a FATF recommendation by code (e.g. R10) or number (e.g. 10).',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         recommendation: {
           anyOf: [{ type: 'string' }, { type: 'number' }],
@@ -152,7 +109,7 @@ const TOOLS: Tool[] = [
     name: 'check_fatf_status',
     description: 'Check FATF high-risk/increased monitoring list status for a country.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         country_code: { type: 'string', description: 'ISO alpha-3 country code.' },
         country_name: { type: 'string', description: 'Country name fallback lookup.' },
@@ -164,7 +121,7 @@ const TOOLS: Tool[] = [
     name: 'get_mutual_evaluation_summary',
     description: 'Get mutual evaluation summaries by jurisdiction or list recent evaluations.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         jurisdiction_code: { type: 'string', description: 'ISO alpha-3 jurisdiction code.' },
         jurisdiction_name: { type: 'string', description: 'Jurisdiction name.' },
@@ -177,7 +134,7 @@ const TOOLS: Tool[] = [
     name: 'map_to_national_requirements',
     description: 'Map international provisions to country-level legal or supervisory references.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         country_code: { type: 'string', description: 'ISO alpha-3 country code.' },
         international_source_id: { type: 'string', description: 'Optional source filter.' },
@@ -196,7 +153,7 @@ const TOOLS: Tool[] = [
     name: 'compare_requirements',
     description: 'Compare requirements on a topic across multiple international regulatory sources.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         topic: { type: 'string', description: 'Topic to compare (for example: governance, aml, capital).' },
         sources: {
@@ -217,7 +174,7 @@ const TOOLS: Tool[] = [
     name: 'list_sources',
     description: 'List all sources with coverage/freshness metadata, or list items for one source.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         source_id: { type: 'string', description: 'Optional source identifier for a detailed view.' },
         include_items: {
@@ -236,7 +193,7 @@ const TOOLS: Tool[] = [
     name: 'about',
     description: 'Return server identity, scope, and implemented capability summary.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {},
       additionalProperties: false,
     },
@@ -245,7 +202,7 @@ const TOOLS: Tool[] = [
     name: 'check_data_freshness',
     description: 'Evaluate local source freshness based on last-updated timestamps and freshness windows.',
     inputSchema: {
-      type: 'object',
+      type: 'object' as const,
       properties: {
         as_of_date: {
           type: 'string',
@@ -261,139 +218,47 @@ const TOOLS: Tool[] = [
   },
 ];
 
+const META_DISCLAIMER =
+  'International financial regulation data is compiled from public standards bodies. National implementation varies. Not financial, legal, or compliance advice.';
+
+const db = openDatabase();
+
+async function handleToolCall(name: string, args: Record<string, unknown>) {
+  let result: unknown;
+  switch (name) {
+    case 'search_financial_regulation': result = await searchFinancialRegulation(db, args as any); break;
+    case 'get_provision': result = await getProvision(db, args as any); break;
+    case 'get_basel_standard': result = await getBaselStandard(db, args as any); break;
+    case 'get_fatf_recommendation': result = await getFatfRecommendation(db, args as any); break;
+    case 'check_fatf_status': result = await checkFatfStatus(db, args as any); break;
+    case 'get_mutual_evaluation_summary': result = await getMutualEvaluationSummary(db, args as any); break;
+    case 'map_to_national_requirements': result = await mapToNationalRequirements(db, args as any); break;
+    case 'compare_requirements': result = await compareRequirements(db, args as any); break;
+    case 'list_sources': result = await listFinancialSources(db, args as any); break;
+    case 'about': result = aboutServer(); break;
+    case 'check_data_freshness': result = await checkDataFreshness(db, args as any); break;
+    default: throw new Error(`Unknown tool: ${name}`);
+  }
+  return { result, _meta: { disclaimer: META_DISCLAIMER } };
+}
+
 const server = new Server(
-  {
-    name: SERVER_NAME,
-    version: SERVER_VERSION,
-  },
-  {
-    capabilities: {
-      tools: {},
-    },
-  },
+  { name: SERVER_NAME, version: SERVER_VERSION },
+  { capabilities: { tools: {} } },
 );
 
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools: TOOLS }));
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
-
   try {
-    let result: unknown;
-
-    switch (name) {
-      case 'search_financial_regulation':
-        result = await searchFinancialRegulation(
-          getDb(),
-          (args ?? {}) as unknown as SearchFinancialRegulationInput,
-        );
-        break;
-
-      case 'get_provision':
-        result = await getProvision(getDb(), (args ?? {}) as unknown as GetProvisionInput);
-        break;
-
-      case 'get_basel_standard':
-        result = await getBaselStandard(getDb(), (args ?? {}) as GetBaselStandardInput);
-        break;
-
-      case 'get_fatf_recommendation':
-        result = await getFatfRecommendation(
-          getDb(),
-          (args ?? {}) as unknown as GetFatfRecommendationInput,
-        );
-        break;
-
-      case 'check_fatf_status':
-        result = await checkFatfStatus(getDb(), (args ?? {}) as CheckFatfStatusInput);
-        break;
-
-      case 'get_mutual_evaluation_summary':
-        result = await getMutualEvaluationSummary(
-          getDb(),
-          (args ?? {}) as GetMutualEvaluationSummaryInput,
-        );
-        break;
-
-      case 'map_to_national_requirements':
-        result = await mapToNationalRequirements(
-          getDb(),
-          (args ?? {}) as unknown as MapToNationalRequirementsInput,
-        );
-        break;
-
-      case 'compare_requirements':
-        result = await compareRequirements(
-          getDb(),
-          (args ?? {}) as unknown as CompareRequirementsInput,
-        );
-        break;
-
-      case 'list_sources':
-        result = await listFinancialSources(getDb(), (args ?? {}) as ListSourcesInput);
-        break;
-
-      case 'about':
-        result = aboutServer();
-        break;
-
-      case 'check_data_freshness':
-        result = await checkDataFreshness(getDb(), (args ?? {}) as CheckDataFreshnessInput);
-        break;
-
-      default:
-        return {
-          content: [
-            {
-              type: 'text',
-              text: `Error: Unknown tool "${name}".`,
-            },
-          ],
-          isError: true,
-        };
-    }
-
-    return {
-      content: [
-        {
-          type: 'text',
-          text: JSON.stringify(result, null, 2),
-        },
-      ],
-    };
+    const result = await handleToolCall(name, (args ?? {}) as Record<string, unknown>);
+    return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
   } catch (error) {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    return {
-      content: [
-        {
-          type: 'text',
-          text: `Error executing ${name}: ${errorMessage}`,
-        },
-      ],
-      isError: true,
-    };
+    const msg = error instanceof Error ? error.message : String(error);
+    return { content: [{ type: 'text', text: `Error: ${msg}` }], isError: true };
   }
 });
 
-async function main(): Promise<void> {
-  const transport = new StdioServerTransport();
-
-  process.on('SIGINT', () => {
-    closeDb();
-    process.exit(0);
-  });
-
-  process.on('SIGTERM', () => {
-    closeDb();
-    process.exit(0);
-  });
-
-  await server.connect(transport);
-  console.error(`[${SERVER_NAME}] Running on stdio transport`);
-}
-
-main().catch((error) => {
-  console.error(`[${SERVER_NAME}] Fatal error`, error);
-  closeDb();
-  process.exit(1);
-});
+const transport = new StdioServerTransport();
+await server.connect(transport);

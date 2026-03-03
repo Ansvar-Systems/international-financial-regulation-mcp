@@ -1,92 +1,27 @@
-# ═══════════════════════════════════════════════════════════════════════════
-# MCP SERVER DOCKERFILE
-# ═══════════════════════════════════════════════════════════════════════════
-#
-# Multi-stage Dockerfile for building and running the MCP server.
-#
-# Usage:
-#   docker build -t international-financial-regulation-mcp .
-#   docker run -i international-financial-regulation-mcp
-#
-# ═══════════════════════════════════════════════════════════════════════════
-
-# ───────────────────────────────────────────────────────────────────────────
-# STAGE 1: BUILD
-# ───────────────────────────────────────────────────────────────────────────
-# Compiles TypeScript to JavaScript
-# ───────────────────────────────────────────────────────────────────────────
-
 FROM node:20-alpine AS builder
-
-# Set working directory
+RUN apk add --no-cache python3 make g++
 WORKDIR /app
-
-# Copy package files first (for better caching)
 COPY package*.json ./
-
-# Install ALL dependencies (including dev)
-# --ignore-scripts prevents postinstall from running
-RUN npm ci --ignore-scripts
-
-# Copy TypeScript config and source
+RUN npm ci
 COPY tsconfig.json ./
-COPY src ./src
-
-# Compile TypeScript
+COPY src/ ./src/
+COPY scripts/ ./scripts/
+COPY data/ ./data/
 RUN npm run build
-
-# ───────────────────────────────────────────────────────────────────────────
-# STAGE 2: PRODUCTION
-# ───────────────────────────────────────────────────────────────────────────
-# Minimal image with only production dependencies
-# ───────────────────────────────────────────────────────────────────────────
+RUN npm run build:db
 
 FROM node:20-alpine AS production
-
-# Set working directory
 WORKDIR /app
-
-# Copy package files
 COPY package*.json ./
-
-# Install production dependencies only
-# Then rebuild better-sqlite3 for Alpine Linux
-RUN npm ci --omit=dev && \
-    npm rebuild better-sqlite3
-
-# Copy compiled JavaScript from builder stage
+RUN npm ci --omit=dev && npm cache clean --force
+RUN addgroup -g 1001 -S nodejs && adduser -S nodejs -u 1001
 COPY --from=builder /app/dist ./dist
-
-# Copy pre-built database
-# This file should already exist from running `npm run build:db`
-COPY data/database.db ./data/database.db
-
-# ───────────────────────────────────────────────────────────────────────────
-# SECURITY
-# ───────────────────────────────────────────────────────────────────────────
-# Create and use non-root user
-# ───────────────────────────────────────────────────────────────────────────
-
-RUN addgroup -S nodejs && adduser -S nodejs -G nodejs
+COPY --from=builder /app/data ./data/
+RUN chown -R nodejs:nodejs /app
 USER nodejs
-
-# ───────────────────────────────────────────────────────────────────────────
-# ENVIRONMENT
-# ───────────────────────────────────────────────────────────────────────────
-
-# Production mode
 ENV NODE_ENV=production
-
-# Database path (matches the COPY destination above)
-# Customize this env var name for your server
-ENV INTERNATIONAL_FINANCIAL_REGULATION_DB_PATH=/app/data/database.db
-
-# ───────────────────────────────────────────────────────────────────────────
-# ENTRY POINT
-# ───────────────────────────────────────────────────────────────────────────
-# MCP servers use stdio, so we run node directly
-# ───────────────────────────────────────────────────────────────────────────
-
 ENV PORT=3000
 EXPOSE 3000
-CMD ["node", "dist/http-server.js"]
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:' + process.env.PORT + '/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+CMD ["node", "dist/src/http-server.js"]
