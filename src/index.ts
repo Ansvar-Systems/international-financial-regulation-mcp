@@ -219,9 +219,18 @@ const TOOLS = [
 ];
 
 const META_DISCLAIMER =
-  'International financial regulation data is compiled from public standards bodies. National implementation varies. Not financial, legal, or compliance advice.';
+  'This data is for informational purposes only and does not constitute legal or financial advice. Verify all information against official sources before making compliance decisions.';
 
 const db = openDatabase();
+
+function getDataAge(): string {
+  try {
+    const row = db.prepare('SELECT MAX(last_updated) as latest FROM sources').get() as { latest: string | null } | undefined;
+    return row?.latest ?? 'unknown';
+  } catch {
+    return 'unknown';
+  }
+}
 
 async function handleToolCall(name: string, args: Record<string, unknown>) {
   let result: unknown;
@@ -239,7 +248,14 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
     case 'check_data_freshness': result = await checkDataFreshness(db, args as any); break;
     default: throw new Error(`Unknown tool: ${name}`);
   }
-  return { result, _meta: { disclaimer: META_DISCLAIMER } };
+  return {
+    result,
+    _meta: {
+      disclaimer: META_DISCLAIMER,
+      data_source: 'Ansvar MCP Network (ansvar.ai/mcp)',
+      data_age: getDataAge(),
+    },
+  };
 }
 
 const server = new Server(
