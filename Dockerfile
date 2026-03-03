@@ -87,4 +87,6 @@ ENV INTERNATIONAL_FINANCIAL_REGULATION_DB_PATH=/app/data/database.db
 # MCP servers use stdio, so we run node directly
 # ───────────────────────────────────────────────────────────────────────────
 
-CMD ["node", "dist/index.js"]
+ENV PORT=3000
+EXPOSE 3000
+CMD ["node", "dist/http-server.js"]
