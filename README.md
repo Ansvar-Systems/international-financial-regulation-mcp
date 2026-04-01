@@ -54,6 +54,33 @@ npx @ansvar/international-financial-regulation-mcp
 }
 ```
 
+
+### Public Endpoint (Streamable HTTP)
+
+Connect from any MCP client (Claude Desktop, ChatGPT, Cursor, VS Code, GitHub Copilot):
+
+```
+https://mcp.ansvar.eu/international-financial-regulation/mcp
+```
+
+**Claude Code:**
+```bash
+claude mcp add international-financial-regulation --transport http https://mcp.ansvar.eu/international-financial-regulation/mcp
+```
+
+**Claude Desktop / Cursor** (`claude_desktop_config.json`):
+```json
+{
+  "mcpServers": {
+    "international-financial-regulation": {
+      "type": "url",
+      "url": "https://mcp.ansvar.eu/international-financial-regulation/mcp"
+    }
+  }
+}
+```
+
+No authentication required. See [all Ansvar MCP endpoints](https://github.com/Ansvar-Systems/Ansvar-Architecture-Documentation/blob/main/docs/mcp-remote-access.md).
 ## What's Included
 
 | Source | Authority | Items | Completeness |
