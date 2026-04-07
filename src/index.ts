@@ -8,6 +8,7 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { SERVER_NAME, SERVER_VERSION } from './constants.js';
 import { openDatabase } from './db.js';
+import { buildCitation } from './utils/citation.js';
 import {
   aboutServer,
   checkDataFreshness,
@@ -232,6 +233,57 @@ function getDataAge(): string {
   }
 }
 
+function buildGetCitation(name: string, args: Record<string, unknown>, result: unknown): Record<string, string> | undefined {
+  const r = result as Record<string, unknown> | null;
+  if (!r) return undefined;
+  switch (name) {
+    case 'get_provision': {
+      const sourceId = String(args.source_id ?? '');
+      const itemId = String(args.item_id ?? '');
+      return buildCitation(
+        `${sourceId} ${itemId}`,
+        String(r.title ?? `${sourceId} ${itemId}`),
+        'get_provision',
+        { source_id: sourceId, item_id: itemId },
+        r.url as string | undefined,
+      ) as any;
+    }
+    case 'get_basel_standard': {
+      const stdId = String(args.standard_id ?? 'Basel');
+      return buildCitation(
+        stdId,
+        String(r.title ?? stdId),
+        'get_basel_standard',
+        { standard_id: stdId },
+        r.url as string | undefined,
+      ) as any;
+    }
+    case 'get_fatf_recommendation': {
+      const rec = String(args.recommendation ?? '');
+      const code = rec.startsWith('R') ? rec : `R${rec}`;
+      return buildCitation(
+        `FATF ${code}`,
+        String(r.title ?? `FATF Recommendation ${rec}`),
+        'get_fatf_recommendation',
+        { recommendation: rec },
+        r.url as string | undefined,
+      ) as any;
+    }
+    case 'get_mutual_evaluation_summary': {
+      const jCode = String(args.jurisdiction_code ?? args.jurisdiction_name ?? '');
+      return buildCitation(
+        `FATF MER ${jCode}`,
+        String(r.title ?? `Mutual Evaluation — ${jCode}`),
+        'get_mutual_evaluation_summary',
+        { jurisdiction_code: jCode },
+        r.url as string | undefined,
+      ) as any;
+    }
+    default:
+      return undefined;
+  }
+}
+
 async function handleToolCall(name: string, args: Record<string, unknown>) {
   let result: unknown;
   switch (name) {
@@ -248,6 +300,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
     case 'check_data_freshness': result = await checkDataFreshness(db, args as any); break;
     default: throw new Error(`Unknown tool: ${name}`);
   }
+  const citation = buildGetCitation(name, args, result);
   return {
     result,
     _meta: {
@@ -255,6 +308,7 @@ async function handleToolCall(name: string, args: Record<string, unknown>) {
       data_source: 'Ansvar MCP Network (ansvar.ai/mcp)',
       data_age: getDataAge(),
     },
+    ...(citation && { _citation: citation }),
   };
 }
 
