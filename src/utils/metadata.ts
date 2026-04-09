@@ -174,5 +174,5 @@ export interface ToolResponse<T> {
   results: T;
 
   /** Professional-use metadata and warnings */
-  _metadata: ResponseMetadata;
+  _meta: ResponseMetadata;
 }
