@@ -23,7 +23,7 @@ jobs:
           echo "drifted=$(cat .ingest-changed)" >> $GITHUB_OUTPUT
       - name: Create issue if drifted
         if: steps.drift.outputs.drifted == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
