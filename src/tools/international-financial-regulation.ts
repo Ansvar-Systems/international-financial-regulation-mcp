@@ -821,8 +821,8 @@ export function aboutServer(): AboutResult {
     category: 'domain_intelligence',
     description: 'Structured access to Basel III/IV, FATF Recommendations, IOSCO Principles, IAIS ICPs, FSB Key Attributes, CPMI-IOSCO PFMI, IADI Core Principles, and G20 financial reform commitments.',
     stats: {
-      total_items: 500,
-      total_sources: 9,
+      total_items: 10508,
+      total_sources: 7,
       database_size_mb: 1,
     },
     data_sources: [
