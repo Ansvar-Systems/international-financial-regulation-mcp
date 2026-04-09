@@ -221,25 +221,118 @@ const TOOLS = [
 const META_DISCLAIMER =
   'International financial regulation data is compiled from public standards bodies. National implementation varies. Not financial, legal, or compliance advice.';
 
+const DATA_AGE = '2026-02-28';
+
 const db = openDatabase();
 
+function makeMeta() {
+  return { disclaimer: META_DISCLAIMER, data_age: DATA_AGE };
+}
+
+function makeCitation(canonicalRef: string, displayText: string, lookupTool: string, lookupArgs: Record<string, unknown>) {
+  return { canonical_ref: canonicalRef, display_text: displayText, lookup: { tool: lookupTool, args: lookupArgs } };
+}
+
 async function handleToolCall(name: string, args: Record<string, unknown>) {
-  let result: unknown;
+  const _meta = makeMeta();
+
   switch (name) {
-    case 'search_financial_regulation': result = await searchFinancialRegulation(db, args as any); break;
-    case 'get_provision': result = await getProvision(db, args as any); break;
-    case 'get_basel_standard': result = await getBaselStandard(db, args as any); break;
-    case 'get_fatf_recommendation': result = await getFatfRecommendation(db, args as any); break;
-    case 'check_fatf_status': result = await checkFatfStatus(db, args as any); break;
-    case 'get_mutual_evaluation_summary': result = await getMutualEvaluationSummary(db, args as any); break;
-    case 'map_to_national_requirements': result = await mapToNationalRequirements(db, args as any); break;
-    case 'compare_requirements': result = await compareRequirements(db, args as any); break;
-    case 'list_sources': result = await listFinancialSources(db, args as any); break;
-    case 'about': result = aboutServer(); break;
-    case 'check_data_freshness': result = await checkDataFreshness(db, args as any); break;
+    case 'search_financial_regulation': {
+      const items = await searchFinancialRegulation(db, args as any);
+      const result = items.map((item) => ({
+        ...item,
+        _citation: makeCitation(
+          `${item.source_id}/${item.item_id}`,
+          `${item.source_id} ${item.item_id}${item.title ? ': ' + item.title : ''}`,
+          'get_provision',
+          { source_id: item.source_id, item_id: item.item_id },
+        ),
+      }));
+      return { result, _meta };
+    }
+    case 'get_provision': {
+      const item = await getProvision(db, args as any);
+      if (!item) return { result: null, _meta };
+      const result = {
+        ...item,
+        _citation: makeCitation(
+          `${item.source_id}/${item.item_id}`,
+          `${item.source_id} ${item.item_id}${item.title ? ': ' + item.title : ''}`,
+          'get_provision',
+          { source_id: item.source_id, item_id: item.item_id },
+        ),
+      };
+      return { result, _meta };
+    }
+    case 'check_fatf_status': {
+      const item = await checkFatfStatus(db, args as any);
+      if (!item) return { result: null, _meta };
+      const result = {
+        ...item,
+        _citation: makeCitation(
+          `FATF_LIST/${item.country_code}`,
+          `FATF List status: ${item.country_name} (${item.country_code})`,
+          'check_fatf_status',
+          { country_code: item.country_code },
+        ),
+      };
+      return { result, _meta };
+    }
+    case 'get_mutual_evaluation_summary': {
+      const raw = await getMutualEvaluationSummary(db, args as any);
+      const result = {
+        ...raw,
+        evaluations: raw.evaluations.map((ev) => ({
+          ...ev,
+          _citation: makeCitation(
+            `FATF_ME/${ev.jurisdiction_code}`,
+            `FATF Mutual Evaluation: ${ev.jurisdiction_name} (${ev.jurisdiction_code})`,
+            'get_mutual_evaluation_summary',
+            { jurisdiction_code: ev.jurisdiction_code },
+          ),
+        })),
+      };
+      return { result, _meta };
+    }
+    case 'map_to_national_requirements': {
+      const items = await mapToNationalRequirements(db, args as any);
+      const result = items.map((item) => ({
+        ...item,
+        _citation: makeCitation(
+          `${item.international_source_id}/${item.international_item_id}/${item.country_code}`,
+          `${item.international_source_id} ${item.international_item_id} → ${item.country_code}`,
+          'get_provision',
+          { source_id: item.international_source_id, item_id: item.international_item_id },
+        ),
+      }));
+      return { result, _meta };
+    }
+    case 'compare_requirements': {
+      const raw = await compareRequirements(db, args as any);
+      const result = {
+        ...raw,
+        comparisons: raw.comparisons.map((comp) => ({
+          ...comp,
+          items: comp.items.map((item) => ({
+            ...item,
+            _citation: makeCitation(
+              `${item.source_id}/${item.item_id}`,
+              `${item.source_id} ${item.item_id}${item.title ? ': ' + item.title : ''}`,
+              'get_provision',
+              { source_id: item.source_id, item_id: item.item_id },
+            ),
+          })),
+        })),
+      };
+      return { result, _meta };
+    }
+    case 'get_basel_standard': return { result: await getBaselStandard(db, args as any), _meta };
+    case 'get_fatf_recommendation': return { result: await getFatfRecommendation(db, args as any), _meta };
+    case 'list_sources': return { result: await listFinancialSources(db, args as any), _meta };
+    case 'about': return { result: aboutServer(), _meta };
+    case 'check_data_freshness': return { result: await checkDataFreshness(db, args as any), _meta };
     default: throw new Error(`Unknown tool: ${name}`);
   }
-  return { result, _meta: { disclaimer: META_DISCLAIMER } };
 }
 
 const server = new Server(
@@ -256,7 +349,8 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     return { content: [{ type: 'text', text: JSON.stringify(result, null, 2) }] };
   } catch (error) {
     const msg = error instanceof Error ? error.message : String(error);
-    return { content: [{ type: 'text', text: `Error: ${msg}` }], isError: true };
+    const errorResponse = { error: msg, _meta: makeMeta(), _error_type: 'tool_error' };
+    return { content: [{ type: 'text', text: JSON.stringify(errorResponse, null, 2) }], isError: true };
   }
 });
 
